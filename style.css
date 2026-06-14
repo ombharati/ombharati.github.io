@@ -1,0 +1,1328 @@
+/* ==========================================================================
+   Claude-Inspired Architectural System Design Tokens
+   ========================================================================== */
+
+:root {
+    /* Brand & Accent Voltage */
+    --colors-primary: #00416A;
+    /* Signature deep blue */
+    --colors-primary-active: #003050;
+    /* Darker press state */
+    --colors-primary-disabled: #e6dfd8;
+    /* Disabled desaturated tint */
+    --colors-accent-teal: #5db8a6;
+    /* Terminal/Active indicators */
+    --colors-accent-amber: #e8a55a;
+    /* Inline markers */
+
+    /* Surface System (Color Blocks over Shadows) */
+    --colors-canvas: #d2b48c;
+    /* Main page floor (Warm Cream) */
+    --colors-surface-soft: #f5f0e8;
+    /* Divider bands */
+    --colors-surface-card: #efe9de;
+    /* Feature cards (One step deeper) */
+    --colors-surface-dark: #181715;
+    /* Product chrome & terminal navy */
+    --colors-surface-dark-elevated: #252320;
+    /* Nested dark elements */
+    --colors-surface-dark-soft: #1f1e1b;
+    /* Code line block windows */
+    --colors-hairline: #e6dfd8;
+    /* Low alpha structural border */
+
+    /* Ink Typographic Gradients */
+    --colors-ink: #141413;
+    /* Primary headers & text */
+    --colors-body-strong: #252523;
+    /* Bold lead copy */
+    --colors-body: #3d3d3a;
+    /* General paragraph text */
+    --colors-muted: #6c6a64;
+    /* Meta typography / sub-items */
+    --colors-muted-soft: #8e8b82;
+    /* Micro layouts / structural text */
+    --colors-on-primary: #ffffff;
+    /* High contrast button text */
+    --colors-on-dark: #faf9f5;
+    /* Paper ink contrast inside dark boxes */
+    --colors-on-dark-soft: #a09d96;
+    /* Dimmed labels inside dark boxes */
+
+    /* Structural Shapes Scale */
+    --rounded-xs: 4px;
+    --rounded-sm: 6px;
+    --rounded-md: 8px;
+    /* Standard CTAs / input matrices */
+    --rounded-lg: 12px;
+    /* Dynamic content cards */
+    --rounded-xl: 16px;
+    /* Hero viewports */
+    --rounded-pill: 9999px;
+    /* Inline badge wrappers */
+
+    /* Proportional Layout Metric Layout Grid (4px Base) */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 48px;
+    --spacing-section: 240px;
+    /* Rhythmic break distance */
+}
+
+[data-theme="dark"] {
+    --colors-primary: #00416A;
+    --colors-primary-active: #003050;
+    --colors-canvas: #121110;
+    --colors-surface-soft: #1a1817;
+    --colors-surface-card: #22201e;
+    --colors-surface-dark: #0a0909;
+    --colors-surface-dark-elevated: #161514;
+    --colors-surface-dark-soft: #11100f;
+    --colors-hairline: #2e2c28;
+    --colors-ink: #faf9f5;
+    --colors-body-strong: #e1dfd9;
+    --colors-body: #c0bdb5;
+    --colors-muted: #8e8b82;
+    --colors-muted-soft: #706e67;
+}
+
+/* ==========================================================================
+   Global Resets & Typographic Configurations
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--colors-canvas);
+    color: var(--colors-body);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body,
+section,
+footer,
+.top-nav,
+.feature-card,
+.project-card-display,
+.category-tab,
+.tech-tag,
+h1, h2, h3, p, a, span, button {
+    transition: background-color 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                color 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                border-color 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                box-shadow 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Editorial Serif Settings */
+h1,
+h2,
+h3,
+.display-xl,
+.display-lg,
+.display-md,
+.display-sm {
+    font-family: 'Cormorant Garamond', Garamond, serif;
+    color: var(--colors-ink);
+    font-weight: 400;
+    /* Editorial strictness: never bold serif */
+}
+
+.display-xl {
+    font-size: 52px;
+    line-height: 1.1;
+    letter-spacing: -1.2px;
+}
+
+.display-lg {
+    font-size: 40px;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+}
+
+.display-md {
+    font-size: 30px;
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+}
+
+.display-sm {
+    font-size: 24px;
+    line-height: 1.25;
+    letter-spacing: -0.2px;
+}
+
+.title-md {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--colors-ink);
+    line-height: 1.4;
+}
+
+.body-lead {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--colors-body-strong);
+}
+
+.body-md {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--colors-body);
+}
+
+.body-sm {
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.caption-uppercase {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--colors-muted);
+}
+
+code,
+pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   Layout Containers & Structural Component Ecosystems
+   ========================================================================== */
+
+.grid-container {
+    display: grid;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.section-container {
+    padding: var(--spacing-section) 0;
+}
+
+.section-dark-band {
+    background-color: var(--colors-surface-dark);
+    padding: var(--spacing-section) 0;
+}
+
+.section-header {
+    max-width: 1440px;
+    margin: 0 auto var(--spacing-xxl) auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.section-subhead {
+    font-size: 18px;
+    color: var(--colors-muted);
+    margin-top: var(--spacing-xs);
+}
+
+/* Top Navigation Link Layouts */
+.top-nav {
+    position: sticky;
+    top: 0;
+    height: 64px;
+    background-color: var(--colors-canvas);
+    border-bottom: 1px solid var(--colors-hairline);
+    z-index: 1000;
+}
+
+.nav-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.spike-mark {
+    width: 18px;
+    height: 18px;
+    color: var(--colors-ink);
+}
+
+.wordmark {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.2px;
+    color: var(--colors-ink);
+    display: inline-block;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: transform, opacity;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    margin-right: 70px;
+}
+
+.nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--colors-muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.nav-link:hover {
+    color: var(--colors-ink);
+}
+
+/* Pull-Cord Gravity Switch */
+.pull-cord-container {
+    position: absolute;
+    top: 0;
+    right: var(--spacing-lg);
+    width: 30px;
+    height: 350px;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.pull-cord-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+#cord-line {
+    transition: stroke 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#cord-handle {
+    cursor: grab;
+    pointer-events: auto;
+    transition: fill 0.3s ease;
+}
+
+#cord-handle:hover {
+    fill: var(--colors-primary);
+}
+
+#cord-handle:active {
+    cursor: grabbing;
+}
+
+#cord-handle-ring {
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ==========================================================================
+   Buttons & Micro Action Triggers
+   ========================================================================== */
+
+.button-primary,
+.button-secondary,
+.button-secondary-inverted {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 var(--spacing-lg);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: var(--rounded-md);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.button-primary:hover,
+.button-secondary:hover,
+.button-secondary-inverted:hover {
+    transform: translateY(-2px);
+}
+
+.button-primary {
+    background-color: var(--colors-primary);
+    color: var(--colors-on-primary);
+    border: none;
+}
+
+.button-primary:active {
+    background-color: var(--colors-primary-active);
+}
+
+/* Animation-Heavy Contact Button */
+.contact-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: var(--spacing-xl);
+}
+
+.contact-btn {
+    position: relative;
+    overflow: hidden;
+    min-width: 120px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+                box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.contact-btn .btn-text {
+    display: inline-block;
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.4s ease;
+    will-change: transform, opacity;
+}
+
+.contact-btn .btn-icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 150%) scale(0.5) rotate(-45deg);
+    opacity: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.4s ease;
+    will-change: transform, opacity;
+    color: var(--colors-on-primary);
+}
+
+.contact-btn:hover {
+    background-color: #ea4335 !important;
+    box-shadow: 0 4px 15px rgba(234, 67, 53, 0.4) !important;
+}
+
+[data-theme="dark"] .contact-btn:hover {
+    box-shadow: 0 4px 15px rgba(234, 67, 53, 0.6) !important;
+}
+
+.contact-btn:hover .btn-text {
+    transform: translateY(-200%);
+    opacity: 0;
+}
+
+.contact-btn:hover .btn-icon {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+}
+
+.button-secondary {
+    background-color: var(--colors-canvas);
+    color: var(--colors-ink);
+    border: 1px solid var(--colors-hairline);
+}
+
+.button-secondary-inverted {
+    background-color: var(--colors-canvas);
+    color: var(--colors-ink);
+    border: none;
+}
+
+
+
+
+
+/* ==========================================================================
+   Hero Section Layout
+   ========================================================================== */
+
+.hero-band {
+    padding: var(--spacing-section) 0;
+    border-bottom: 1px solid var(--colors-hairline);
+}
+
+.hero-grid {
+    grid-template-columns: 1fr;
+    max-width: 1000px;
+    align-items: center;
+    gap: var(--spacing-xxl);
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+}
+
+.badge-coral {
+    background-color: var(--colors-primary);
+    color: var(--colors-on-primary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    padding: 4px 10px;
+    border-radius: var(--rounded-pill);
+}
+
+.cta-row {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xs);
+}
+
+/* ==========================================================================
+   Product Chrome Mockups (Shadowless Depth Vectors)
+   ========================================================================== */
+
+.product-mockup-card-dark,
+.code-window-card {
+    background-color: var(--colors-surface-dark);
+    border-radius: var(--rounded-lg);
+    border: 1px solid var(--colors-surface-dark-elevated);
+    overflow: hidden;
+}
+
+.mockup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    padding: 0 var(--spacing-md);
+    background-color: var(--colors-surface-dark-elevated);
+    border-bottom: 1px solid var(--colors-surface-dark-soft);
+}
+
+.window-controls {
+    display: flex;
+    gap: 6px;
+}
+
+.window-controls .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--colors-surface-dark-soft);
+}
+
+.window-title,
+.mono-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--colors-on-dark-soft);
+}
+
+.code-window-inner {
+    padding: var(--spacing-lg);
+    background-color: var(--colors-surface-dark-soft);
+    overflow-x: auto;
+}
+
+/* Syntax Elements */
+.token-keyword {
+    color: #cc785c;
+}
+
+.token-string {
+    color: #5db8a6;
+}
+
+.token-function {
+    color: #e8a55a;
+}
+
+.token-comment {
+    color: #6c6a64;
+    font-style: italic;
+}
+
+.token-output {
+    color: var(--colors-on-dark-soft);
+    display: block;
+    margin-top: var(--spacing-sm);
+}
+
+/* ==========================================================================
+   Features Card Grids (Color block elevation)
+   ========================================================================== */
+
+.feature-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+}
+
+.feature-card {
+    background-color: #ffffff;
+    color: #181715;
+    padding: var(--spacing-xl);
+    border-radius: var(--rounded-lg);
+    border: 1px solid #e6dfd8;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--colors-primary);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.feature-card .title-md {
+    color: #181715;
+}
+
+.feature-card .body-md {
+    color: #55524c;
+}
+
+.feature-icon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--colors-primary);
+}
+
+/* ==========================================================================
+   Split Configuration Sections & Lists
+   ========================================================================== */
+
+.split-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--spacing-xxl);
+}
+
+.dark-band-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.text-on-dark {
+    color: var(--colors-on-dark);
+}
+
+.text-on-dark-soft {
+    color: var(--colors-on-dark-soft);
+}
+
+.text-dim {
+    background-color: var(--colors-surface-dark);
+    border-bottom: none;
+}
+
+.spec-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.spec-list li {
+    font-size: 15px;
+    color: var(--colors-on-dark);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.spec-list li::before {
+    content: "—";
+    color: var(--colors-primary);
+}
+
+/* ==========================================================================
+   Interactive Console / Diagnostic Terminal Component
+   ========================================================================== */
+
+.terminal-interactive-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.terminal-tabs {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.category-tab {
+    background: transparent;
+    border: none;
+    padding: 8px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--colors-muted);
+    border-radius: var(--rounded-md);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.category-tab:hover {
+    color: var(--colors-ink);
+}
+
+.category-tab.active {
+    background-color: var(--colors-surface-card);
+    color: var(--colors-ink);
+}
+
+.terminal-body {
+    border: 1px solid var(--colors-surface-dark-elevated);
+}
+
+.console-output {
+    color: var(--colors-on-dark);
+    min-height: 140px;
+}
+
+.system-prompt {
+    color: var(--colors-accent-teal);
+}
+
+.output-block {
+    margin-top: var(--spacing-sm);
+    color: var(--colors-on-dark-soft);
+    white-space: pre-wrap;
+}
+
+/* ==========================================================================
+   Brand Callout Layer (High Voltage Surface Card)
+   ========================================================================== */
+
+.callout-card-coral {
+    background-color: var(--colors-primary);
+    color: var(--colors-on-primary);
+    padding: var(--spacing-xxl);
+    border-radius: var(--rounded-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+}
+
+.callout-card-coral h2 {
+    color: var(--colors-on-primary);
+}
+
+.coral-body {
+    font-size: 16px;
+    line-height: 1.55;
+    max-width: 600px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ==========================================================================
+   Pinned Dark Footer Matrix
+   ========================================================================== */
+
+.footer {
+    background-color: var(--colors-surface-dark);
+    padding: 32px 0;
+    border-top: 1px solid var(--colors-surface-dark-elevated);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.footer-left .wordmark {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.footer-right a {
+    color: var(--colors-on-dark-soft);
+    font-size: 13px;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.footer-right a:hover {
+    color: var(--colors-on-dark);
+}
+
+.footer-right .divider {
+    color: var(--colors-surface-dark-elevated);
+    font-size: 12px;
+}
+
+/* ==========================================================================
+   Responsive Architecture Mechanics
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+
+    .hero-grid,
+    .split-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .display-xl {
+        font-size: 40px;
+    }
+
+    .display-lg {
+        font-size: 32px;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links a:not(.button-primary) {
+        display: none;
+        /* Strip down non-essentials on mobile arrays */
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+    
+    .footer-right {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+/* ==========================================================================
+   Software & Systems Engineering Custom Visual Panels
+   ========================================================================== */
+
+/* Hero Graphics */
+.hero-graphic {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--rounded-lg);
+    display: block;
+    box-shadow: none;
+    border: 1px solid var(--colors-hairline);
+}
+
+/* System Tech Stack Panel */
+.tech-stack-panel {
+    background-color: var(--colors-surface-dark-soft);
+    padding: var(--spacing-xl);
+    border-radius: var(--rounded-lg);
+    border: 1px solid var(--colors-surface-dark-elevated);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.panel-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--colors-on-dark);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: var(--spacing-xs);
+}
+
+.stack-category {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.category-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--colors-on-dark-soft);
+}
+
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.tech-tag {
+    background-color: var(--colors-surface-dark-elevated);
+    color: var(--colors-on-dark);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: var(--rounded-sm);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.tech-tag:hover {
+    border-color: var(--colors-primary);
+    color: var(--colors-primary);
+}
+
+/* Project Showcase Layouts */
+.project-showcase-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.project-tabs {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.project-card-display {
+    background-color: var(--colors-surface-card);
+    padding: var(--spacing-xl);
+    border-radius: var(--rounded-lg);
+    border: 1px solid var(--colors-hairline);
+    min-height: 220px;
+}
+
+.project-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    animation: fadeIn 0.3s ease;
+}
+
+.project-badge {
+    align-self: flex-start;
+    background-color: var(--colors-primary);
+    color: var(--colors-on-primary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--rounded-pill);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-specs {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
+}
+
+.project-specs li {
+    font-size: 15px;
+    color: var(--colors-body);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.project-specs li::before {
+    content: "—";
+    color: var(--colors-primary);
+}
+
+/* Contact Page Section */
+.contact-section {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid var(--colors-hairline);
+    padding: var(--spacing-section) var(--spacing-lg);
+    box-sizing: border-box;
+}
+
+.contact-card-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.contact-badge {
+    color: var(--colors-primary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Scroll Reveal Transition System */
+.js .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+.js .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay-1 {
+    transition-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+    transition-delay: 0.2s;
+}
+
+.reveal-delay-3 {
+    transition-delay: 0.3s;
+}
+
+/* ==========================================================================
+   Technical Expertise Interactive Module Styles
+   ========================================================================== */
+
+.search-box-container {
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+}
+
+.skill-search-input {
+    width: 100%;
+    padding: 10px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background-color: var(--colors-surface-dark-elevated);
+    border: 1px solid var(--colors-hairline);
+    color: var(--colors-on-dark);
+    border-radius: var(--rounded-md);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-search-input:focus {
+    border-color: var(--colors-primary);
+    box-shadow: 0 0 0 2px rgba(204, 120, 92, 0.2);
+}
+
+.expertise-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.expertise-tab {
+    background: transparent;
+    border: 1px solid var(--colors-surface-dark-elevated);
+    padding: 6px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--colors-on-dark-soft);
+    border-radius: var(--rounded-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.expertise-tab:hover {
+    color: var(--colors-on-dark);
+    border-color: var(--colors-muted);
+}
+
+.expertise-tab.active {
+    background-color: var(--colors-primary);
+    color: var(--colors-on-primary);
+    border-color: var(--colors-primary);
+}
+
+.tag-cloud-interactive {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.tech-tag-interactive {
+    background-color: var(--colors-surface-dark-elevated);
+    color: var(--colors-on-dark-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: var(--rounded-sm);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tech-tag-interactive:hover {
+    border-color: var(--colors-primary);
+    color: var(--colors-primary);
+}
+
+.tech-tag-interactive.active {
+    background-color: var(--colors-primary);
+    color: var(--colors-on-primary);
+    border-color: var(--colors-primary);
+}
+
+.filter-instruction-tip {
+    font-size: 11px;
+    color: var(--colors-on-dark-soft);
+    font-style: italic;
+    margin-top: var(--spacing-xs);
+}
+
+/* ==========================================================================
+   Featured Projects Dashboard Layout
+   ========================================================================== */
+
+.active-filter-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    padding: 6px 12px;
+    background-color: var(--colors-surface-card);
+    border: 1px solid var(--colors-hairline);
+    border-radius: var(--rounded-md);
+    animation: fadeIn 0.3s ease;
+}
+
+.filter-label {
+    font-size: 12px;
+    color: var(--colors-muted);
+    font-family: 'Inter', sans-serif;
+}
+
+.active-tag-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--colors-on-primary);
+    background-color: var(--colors-primary);
+    padding: 2px 6px;
+    border-radius: var(--rounded-xs);
+}
+
+.clear-filter-btn {
+    background: transparent;
+    border: none;
+    color: var(--colors-muted);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: color 0.15s ease;
+}
+
+.clear-filter-btn:hover {
+    color: var(--colors-primary);
+}
+
+.project-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.project-dashboard-card {
+    background-color: var(--colors-surface-card);
+    border: 1px solid var(--colors-hairline);
+    border-radius: var(--rounded-lg);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 230px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease,
+                box-shadow 0.4s ease;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.project-dashboard-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--colors-primary);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="dark"] .project-dashboard-card:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+}
+
+.project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-sm);
+    gap: var(--spacing-sm);
+}
+
+.project-card-title {
+    font-family: 'Cormorant Garamond', Garamond, serif;
+    font-size: 26px;
+    line-height: 1.15;
+    color: var(--colors-ink);
+    font-weight: 500;
+}
+
+.project-card-status-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--rounded-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.project-card-status-badge.status-in-progress {
+    background-color: rgba(232, 165, 90, 0.1);
+    color: var(--colors-accent-amber);
+    border: 1px solid rgba(232, 165, 90, 0.25);
+}
+
+.project-card-status-badge.status-complete {
+    background-color: rgba(93, 184, 166, 0.1);
+    color: var(--colors-accent-teal);
+    border: 1px solid rgba(93, 184, 166, 0.25);
+}
+
+.project-card-status-badge.status-ongoing {
+    background-color: rgba(204, 120, 92, 0.1);
+    color: var(--colors-primary);
+    border: 1px solid rgba(204, 120, 92, 0.25);
+}
+
+.project-card-body {
+    flex-grow: 1;
+    margin-bottom: var(--spacing-md);
+}
+
+.project-card-description {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--colors-body);
+}
+
+.project-card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.project-card-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 2px 6px;
+    background-color: var(--colors-surface-soft);
+    border: 1px solid var(--colors-hairline);
+    border-radius: var(--rounded-xs);
+    color: var(--colors-muted);
+    transition: all 0.2s ease;
+}
+
+.project-card-tag:hover {
+    border-color: var(--colors-primary);
+    color: var(--colors-primary);
+}
+
+/* Template/Skeleton Card Placeholders */
+.project-dashboard-card.template-card {
+    cursor: default;
+    pointer-events: none;
+    box-shadow: none;
+}
+
+.project-dashboard-card.template-card:hover {
+    transform: none;
+    border-color: var(--colors-hairline);
+    box-shadow: none;
+}
+
+.template-line {
+    height: 10px;
+    background-color: var(--colors-hairline);
+    opacity: 0.25;
+    border-radius: var(--rounded-xs);
+    margin-bottom: var(--spacing-sm);
+}
+
+.template-line-long {
+    width: 90%;
+    margin-top: var(--spacing-xs);
+}
+
+.template-line-medium {
+    width: 70%;
+}
+
+.template-line-short {
+    width: 45%;
+}
+
+.project-card-status-badge.status-template {
+    background-color: var(--colors-hairline);
+    opacity: 0.15;
+    width: 50px;
+    height: 14px;
+    border: none;
+}
+
+
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
