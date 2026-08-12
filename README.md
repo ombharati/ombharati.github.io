@@ -1,101 +1,85 @@
 # Om Bharati
 
-> Systems & Software Engineer
+> Software Engineering Student
 
-## 👤 Professional Identity
+I’m building strong foundations in software engineering with a current focus on **C++**, backend development, and computer science fundamentals.
 
-Systems engineer focused on performance, reliability, and reducing surprise fire drills.
-
-My interest lies in understanding how software behaves at a fundamental level — from execution models and memory management to distributed coordination and backend architecture.
-
-I prefer systems that are:
-- deterministic over chaotic  
-- observable over opaque  
-- engineered over improvised  
+My main interests are systems programming, backend engineering, networking, operating systems, databases, and understanding how software behaves beneath higher-level abstractions.
 
 ---
 
-## 🧠 Professional Statement
+## Current Focus
 
-> "I engineer predictable low-level systems, focusing on network stacks, concurrency models, and custom runtimes."
-
-> "I am always open to discussing distributed coordination, concurrent backend architectures, and low-level runtimes."
-
----
-
-## 🎯 Focus Areas
-
-My work and learning focus on systems that sit close to the machine or scale across it.
-
-### Core Domains
-- Networked backend systems
-- Concurrency and parallel execution models
-- Distributed systems coordination
-- Low-level runtime design
-- Infrastructure tooling and automation
+* C++ — primary language focus
+* Python — programming, scripting, and project work
+* Go — backend fundamentals, interfaces, and error handling
+* SQL — relational databases and querying
+* Data Structures & Algorithms
+* Linux
+* Git & GitHub
 
 ---
 
-## 🧰 Technical Skillset
+## Technical Skills
 
-### Systems & Infrastructure
-- Linux fundamentals
-- Docker & containerized environments
-- Secure namespace isolation concepts
-- cgroups v2 (resource control and allocation)
-- Layered / overlay filesystem concepts
+### Languages
 
-### Programming (Learning / In Progress)
-- C / C++ — memory management, pointers, low-level systems, performance tuning
-- Go / Rust — concurrent services, safe parallelism, backend systems
-- Python — automation, tooling, testing systems
-- SQL — data modeling, queries, backend persistence layers
+* C++
+* Python
+* Go
+* SQL
 
----
+### Development
 
-## 🧱 System Architecture Interests
+* Git
+* GitHub
+* Linux
+* HTML
+* CSS
+* JavaScript
 
-I am especially interested in how systems are composed and controlled under load.
+### Computer Science
 
-### Areas of focus:
-- Secure namespace isolation
-- Fine-grained resource allocation (cgroups v2)
-- Distributed coordination systems
-- Network protocol stacks
-- High-concurrency backend architectures
-- Custom runtime environments
-- Event-driven system design
+* Object-Oriented Programming
+* Data Structures & Algorithms
+* Database fundamentals
+* Networking fundamentals
+* Operating Systems fundamentals
 
 ---
 
-## 🧭 Philosophy
+## Currently Exploring
 
-I care about systems that behave predictably.
+I’m gradually developing deeper knowledge in:
 
-Software should not feel random or fragile. I am interested in understanding and reducing complexity at every layer — from how processes are scheduled to how services communicate under pressure.
+* Operating Systems
+* Computer Networking
+* Linux Internals
+* Database Internals
+* Concurrency
+* System Design
 
-My goal is not just to build software, but to understand what makes it stable, scalable, and explainable.
-
----
-
-## 🧾 Technical Stack
-
-- System-level languages: C, C++, Go, Rust (learning stage)
-- Python (automation and tooling)
-- SQL (data layer design)
-- Linux-based development environments
-- Docker for containerized workflows
+These are active learning areas rather than claims of expertise.
 
 ---
 
-## 📬 Contact
+## Direction
 
-- Email: **i.ombharati@gmail.com**
-- GitHub: https://github.com/ombharati
-- LinkedIn: https://linkedin.com
+I’m particularly interested in progressing toward software that requires a deeper understanding of:
+
+* memory and performance
+* concurrency
+* networking
+* operating systems
+* backend architecture
+* databases
+
+C++ is currently my main language for developing that deeper systems-level understanding.
 
 ---
 
-## ⚙️ Note
+## Contact
 
-This portfolio reflects an evolving systems engineer profile. Skills and projects are actively expanding in the direction of low-level systems, distributed architecture, and infrastructure design.
+* Email: **[i.ombharati@gmail.com](mailto:i.ombharati@gmail.com)**
+* GitHub: **[ombharati](https://ombharati.github.io/)**
+* LinkedIn: **[linkdin](https://www.linkedin.com/in/om-bharati5/)**
