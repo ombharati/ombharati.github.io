@@ -1,10 +1,11 @@
 /**
- * Om Bharati — Systems & Software Engineer
+ * Om Bharati - Software Engineering Student
  * UI Control Engine
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeTechnicalExpertise();
+    initializeFeaturedProjects();
     initializeSmoothScrolling();
     initializeScrollAnimations();
     initializeThemeToggle();
@@ -13,10 +14,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- Portfolio Skills Database ---
 const SKILLS_DATA = {
-    backend: ["Python", "Advanced Python", "C", "Go", "PostgreSQL"],
-    infra: ["Linux", "Networking", "Docker", "AWS", "Kubernetes"],
-    design: ["System Design", "Distributed Systems"]
+    languages: ["C++", "Python", "Go", "SQL"],
+    development: ["Git", "GitHub", "Linux", "HTML", "CSS", "JavaScript"],
+    cs: ["DSA", "OOP", "Operating Systems", "Networking", "Databases", "System Design"]
 };
+
+// --- Portfolio Projects Database ---
+const PROJECTS_DATA = [
+    {
+        title: "Liftoff Protocol",
+        description: "A C++ launch control simulator that validates mission parameters, performs pre-flight diagnostics, and executes a timed liftoff sequence.",
+        tags: ["C++", "CLI / Simulation"],
+        repoUrl: "https://github.com/ombharati/liftoff-protocol"
+    },
+    {
+        title: "Spreadsheet Engine",
+        description: "A spreadsheet computation engine built from scratch in Python as a hands-on project for learning program structure and computation logic.",
+        tags: ["Python", "Computation Engine"],
+        repoUrl: "https://github.com/ombharati/spreadsheet-engine"
+    },
+    {
+        title: "Budget Guardian",
+        description: "A Python CLI application for evaluating budgets using validated user input, calculations, and conditional decision logic.",
+        tags: ["Python", "CLI / Validation"],
+        repoUrl: "https://github.com/ombharati/Budget-Guardian"
+    }
+];
 
 let activeSkillCategory = "all";
 
@@ -52,7 +75,7 @@ function renderSkills() {
     // Collect skills by selected category
     let skills = [];
     if (activeSkillCategory === 'all') {
-        skills = [...SKILLS_DATA.backend, ...SKILLS_DATA.infra, ...SKILLS_DATA.design];
+        skills = [...SKILLS_DATA.languages, ...SKILLS_DATA.development, ...SKILLS_DATA.cs];
     } else {
         skills = SKILLS_DATA[activeSkillCategory] || [];
     }
@@ -63,6 +86,48 @@ function renderSkills() {
         span.className = 'tech-tag';
         span.textContent = skill;
         tagCloud.appendChild(span);
+    });
+}
+
+/**
+ * Featured Projects Section - Dynamic Project Cards
+ */
+function initializeFeaturedProjects() {
+    const projectsGrid = document.getElementById('projects-grid');
+    if (!projectsGrid) return;
+
+    projectsGrid.innerHTML = '';
+    PROJECTS_DATA.forEach(project => {
+        const card = document.createElement('article');
+        card.className = 'project-dashboard-card';
+        
+        card.innerHTML = `
+            <div class="project-card-inner">
+                <div class="project-card-header">
+                    <h4 class="project-card-title">${project.title}</h4>
+                    <a href="${project.repoUrl}" target="_blank" rel="noopener noreferrer" class="project-card-status-badge status-complete" aria-label="View ${project.title} Repository">
+                        GitHub ↗
+                    </a>
+                </div>
+                <div class="project-card-body">
+                    <p class="project-card-description">${project.description}</p>
+                </div>
+            </div>
+            <div class="project-card-footer">
+                <div class="project-card-tags">
+                    ${project.tags.map(tag => `<span class="project-card-tag">${tag}</span>`).join('')}
+                </div>
+            </div>
+        `;
+        
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', (e) => {
+            if (!e.target.closest('a')) {
+                window.open(project.repoUrl, '_blank', 'noopener,noreferrer');
+            }
+        });
+
+        projectsGrid.appendChild(card);
     });
 }
 
