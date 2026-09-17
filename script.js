@@ -1,63 +1,77 @@
-/**
- * Om Bharati - Software Engineering Student
- * UI Control Engine
- */
-
 document.addEventListener('DOMContentLoaded', () => {
     initializeTechnicalExpertise();
     initializeFeaturedProjects();
     initializeSmoothScrolling();
     initializeScrollAnimations();
-    initializeThemeToggle();
-    initializeBrandNameCycle();
 });
 
-// --- Portfolio Skills Database ---
-const SKILLS_DATA = {
-    languages: ["C++", "Python", "Go", "SQL"],
-    development: ["Git", "GitHub", "Linux", "HTML", "CSS", "JavaScript"],
-    cs: ["DSA", "OOP", "Operating Systems", "Networking", "Databases", "System Design"]
+const EXPLORING_DATA = {
+    systems: [
+        "Operating Systems",
+        "Computer Networking",
+        "Linux",
+        "Concurrency"
+    ],
+    architecture: [
+        "Database Internals",
+        "System Design",
+        "Backend Concepts"
+    ],
+    workflows: [
+        "Command-Line Tools",
+        "CI/CD Pipelines",
+        "Automation",
+        "Git & GitHub"
+    ]
 };
 
-// --- Portfolio Projects Database ---
 const PROJECTS_DATA = [
     {
         title: "Liftoff Protocol",
-        description: "A C++ launch control simulator that validates mission parameters, performs pre-flight diagnostics, and executes a timed liftoff sequence.",
-        tags: ["C++", "CLI / Simulation"],
-        repoUrl: "https://github.com/ombharati/liftoff-protocol"
+        description: "A C++ command-line launch simulation built to practice language fundamentals, pre-flight parameter validation, and sequential control flow.",
+        tags: ["C++", "CLI", "Simulation"],
+        repoUrl: "https://github.com/ombharati/liftoff-protocol",
+        status: "Completed",
+        statusClass: "status-complete"
     },
     {
         title: "Spreadsheet Engine",
-        description: "A spreadsheet computation engine built from scratch in Python as a hands-on project for learning program structure and computation logic.",
-        tags: ["Python", "Computation Engine"],
-        repoUrl: "https://github.com/ombharati/spreadsheet-engine"
+        description: "A lightweight spreadsheet computation engine in Python built to explore AST-based formula parsing, cell dependency tracking, and cycle detection.",
+        tags: ["Python", "Algorithms", "CLI"],
+        repoUrl: "https://github.com/ombharati/spreadsheet-engine",
+        status: "Completed",
+        statusClass: "status-complete"
     },
     {
         title: "Budget Guardian",
-        description: "A Python CLI application for evaluating budgets using validated user input, calculations, and conditional decision logic.",
-        tags: ["Python", "CLI / Validation"],
-        repoUrl: "https://github.com/ombharati/Budget-Guardian"
+        description: "A Python CLI tool for evaluating expense decisions against monthly savings goals, built to practice input validation, conditional logic, and program structure.",
+        tags: ["Python", "CLI", "Validation"],
+        repoUrl: "https://github.com/ombharati/Budget-Guardian",
+        status: "Completed",
+        statusClass: "status-complete"
+    },
+    {
+        title: "Linux System Info",
+        description: "A lightweight Python CLI utility that displays core Linux system metrics—including CPU core count, memory usage, disk utilization, and uptime.",
+        tags: ["Python", "Linux", "CLI"],
+        repoUrl: "https://github.com/ombharati/Linux-System-Info",
+        status: "Completed",
+        statusClass: "status-complete"
     }
 ];
 
 let activeSkillCategory = "all";
 
-/**
- * Technical Expertise Section - Dynamic Skill Tag Cloud
- */
 function initializeTechnicalExpertise() {
     const categoryTabs = document.querySelectorAll('.expertise-tab');
     const tagCloud = document.getElementById('dynamic-tag-cloud');
 
     if (!tagCloud) return;
 
-    // Render skills initially
     renderSkills();
 
-    // Category filter tabs handler
     categoryTabs.forEach(tab => {
-        tab.addEventListener('click', (e) => {
+        tab.addEventListener('click', () => {
             categoryTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             activeSkillCategory = tab.getAttribute('data-category');
@@ -72,26 +86,25 @@ function renderSkills() {
 
     tagCloud.innerHTML = '';
 
-    // Collect skills by selected category
-    let skills = [];
+    let topics = [];
     if (activeSkillCategory === 'all') {
-        skills = [...SKILLS_DATA.languages, ...SKILLS_DATA.development, ...SKILLS_DATA.cs];
+        topics = Array.from(new Set([
+            ...EXPLORING_DATA.systems,
+            ...EXPLORING_DATA.architecture,
+            ...EXPLORING_DATA.workflows
+        ]));
     } else {
-        skills = SKILLS_DATA[activeSkillCategory] || [];
+        topics = EXPLORING_DATA[activeSkillCategory] || [];
     }
 
-    // Generate static skills tag elements
-    skills.forEach(skill => {
+    topics.forEach(topic => {
         const span = document.createElement('span');
         span.className = 'tech-tag';
-        span.textContent = skill;
+        span.textContent = topic;
         tagCloud.appendChild(span);
     });
 }
 
-/**
- * Featured Projects Section - Dynamic Project Cards
- */
 function initializeFeaturedProjects() {
     const projectsGrid = document.getElementById('projects-grid');
     if (!projectsGrid) return;
@@ -105,9 +118,12 @@ function initializeFeaturedProjects() {
             <div class="project-card-inner">
                 <div class="project-card-header">
                     <h4 class="project-card-title">${project.title}</h4>
-                    <a href="${project.repoUrl}" target="_blank" rel="noopener noreferrer" class="project-card-status-badge status-complete" aria-label="View ${project.title} Repository">
-                        GitHub ↗
-                    </a>
+                    <div class="project-card-header-actions">
+                        <span class="project-card-status-badge ${project.statusClass || 'status-complete'}">${project.status || 'Completed'}</span>
+                        <a href="${project.repoUrl}" target="_blank" rel="noopener noreferrer" class="project-card-link-badge" aria-label="View ${project.title} on GitHub">
+                            GitHub ↗
+                        </a>
+                    </div>
                 </div>
                 <div class="project-card-body">
                     <p class="project-card-description">${project.description}</p>
@@ -131,9 +147,6 @@ function initializeFeaturedProjects() {
     });
 }
 
-/**
- * Standard interception of anchoring mechanics to allow fluid page transitions.
- */
 function initializeSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -155,9 +168,6 @@ function initializeSmoothScrolling() {
     });
 }
 
-/**
- * Scroll reveal triggers adding `.in-view` to `.reveal` elements as they scroll in.
- */
 function initializeScrollAnimations() {
     const observerOptions = {
         root: null,
@@ -169,7 +179,7 @@ function initializeScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('in-view');
-                observer.unobserve(entry.target); // Trigger only once
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
@@ -178,205 +188,4 @@ function initializeScrollAnimations() {
     revealElements.forEach(element => {
         observer.observe(element);
     });
-}
-
-/**
- * Handles toggling between light and dark modes via a gravity-based pull cord.
- */
-function initializeThemeToggle() {
-    const container = document.getElementById('theme-pull-cord');
-    const cordLine = document.getElementById('cord-line');
-    const cordHandle = document.getElementById('cord-handle');
-    const cordHandleRing = document.getElementById('cord-handle-ring');
-    if (!container || !cordLine || !cordHandle) return;
-
-    // Retrieve active theme from storage or system preference
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-
-    if (initialTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-        document.documentElement.removeAttribute('data-theme');
-    }
-
-    // Physics parameters
-    const pivotX = 15;
-    const pivotY = 0;
-    const restingY = 120;
-    
-    let hx = 15;
-    let hy = 120;
-    let vx = 0;
-    let vy = 0;
-    
-    let isDragging = false;
-    let themeTriggered = false;
-    
-    const k = 0.04;        // Spring stiffness
-    const damping = 0.88;  // Friction damping
-    const gravity = 0.5;   // Gravity strength
-
-    let time = 0;
-
-    // Physics Loop
-    function updatePhysics() {
-        time += 0.035;
-        if (!isDragging) {
-            // Apply Spring physics (pulling handle back to pivot at rest length)
-            const fx = -k * (hx - pivotX);
-            const fy = -k * (hy - restingY);
-            
-            // Apply gravity
-            const forceY = fy + gravity;
-            
-            // Add a slow, gentle continuous waving/sway force (breeze simulation)
-            const sway = Math.sin(time) * 0.07;
-            
-            vx += fx + sway;
-            vy += forceY;
-            vx *= damping;
-            vy *= damping;
-            
-            hx += vx;
-            hy += vy;
-        }
-        
-        // Render
-        const dx = hx - pivotX;
-        const dy = hy;
-        const currentLength = Math.sqrt(dx * dx + dy * dy);
-        let cx = pivotX + dx / 2;
-        let cy = hy / 2;
-        
-        if (currentLength < restingY) {
-            const slack = restingY - currentLength;
-            // Bow out based on deviation direction
-            cx += (dx < 0 ? 0.35 : -0.35) * slack;
-            cy += slack * 0.2;
-        }
-        
-        cordLine.setAttribute('d', `M ${pivotX} ${pivotY} Q ${cx} ${cy} ${hx} ${hy}`);
-        cordHandle.setAttribute('cx', hx);
-        cordHandle.setAttribute('cy', hy);
-        if (cordHandleRing) {
-            cordHandleRing.setAttribute('cx', hx);
-            cordHandleRing.setAttribute('cy', hy);
-        }
-        
-        requestAnimationFrame(updatePhysics);
-    }
-    
-    // Start physics loop
-    requestAnimationFrame(updatePhysics);
-
-    // Mouse and Touch Interaction Handlers
-    function startDrag(e) {
-        isDragging = true;
-        themeTriggered = false;
-        e.preventDefault();
-    }
-
-    function dragMove(e) {
-        if (!isDragging) return;
-        
-        const rect = container.getBoundingClientRect();
-        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
-        const clientY = e.clientY || (e.touches && e.touches[0].clientY);
-        
-        // Calculate relative coordinates inside container
-        let mx = clientX - rect.left;
-        let my = clientY - rect.top;
-        
-        // Constraints
-        hx = Math.max(-25, Math.min(55, mx));
-        hy = Math.max(30, Math.min(220, my));
-        
-        // Check for theme trigger pull line (threshold: 165px)
-        if (hy > 165 && !themeTriggered) {
-            themeTriggered = true;
-            toggleTheme();
-            triggerPulseRing();
-        }
-    }
-
-    function endDrag() {
-        isDragging = false;
-    }
-
-    function toggleTheme() {
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        if (isDark) {
-            document.documentElement.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        }
-    }
-
-    function triggerPulseRing() {
-        if (!cordHandleRing) return;
-        let radius = 14;
-        let opacity = 0.8;
-        
-        function animateRing() {
-            radius += 1.5;
-            opacity -= 0.05;
-            if (opacity > 0) {
-                cordHandleRing.setAttribute('r', radius);
-                cordHandleRing.setAttribute('opacity', opacity);
-                requestAnimationFrame(animateRing);
-            } else {
-                cordHandleRing.setAttribute('opacity', '0');
-                cordHandleRing.setAttribute('r', '14');
-            }
-        }
-        requestAnimationFrame(animateRing);
-    }
-
-    // Attach listeners to handle
-    cordHandle.addEventListener('mousedown', startDrag);
-    cordHandle.addEventListener('touchstart', startDrag, { passive: false });
-
-    // Attach window listeners to track movement outside handle boundary
-    window.addEventListener('mousemove', dragMove);
-    window.addEventListener('touchmove', dragMove, { passive: false });
-    window.addEventListener('mouseup', endDrag);
-    window.addEventListener('touchend', endDrag);
-}
-
-/**
- * Loops and morphs the brand logo wordmark between clean, cute, and developer-focused titles.
- */
-function initializeBrandNameCycle() {
-    const brandName = document.getElementById('brand-name');
-    if (!brandName) return;
-
-    const names = [
-        'Om Bharati ',
-        'Om Bharati ',
-        'Om Bharati ',
-        'Om Bharati ',
-        'Om Bharati ☕',
-        'Om Bharati ',
-        'Om Bharati '
-    ];
-    let currentIndex = 0;
-
-    setInterval(() => {
-        // Soft slide out & fade
-        brandName.style.opacity = 0;
-        brandName.style.transform = 'translateY(-4px)';
-
-        setTimeout(() => {
-            currentIndex = (currentIndex + 1) % names.length;
-            brandName.textContent = names[currentIndex];
-            
-            // Soft slide back in & fade
-            brandName.style.opacity = 1;
-            brandName.style.transform = 'translateY(0)';
-        }, 400); // match style transition duration
-    }, 4500); // morphs every 4.5 seconds
 }
