@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Om Bharati - Software Engineering Student</title>
+    <title>Om Bharati - Computer Science Undergraduate</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%2300416A%22/><text x=%2216%22 y=%2222%22 font-family=%22monospace%22 font-size=%2218%22 font-weight=%22bold%22 fill=%22%23ffffff%22 text-anchor=%22middle%22>O</text></svg>">
     <link rel="stylesheet" href="style.css">
     <script>document.documentElement.classList.add('js');</script>
     <script src="script.js" defer></script>
@@ -17,7 +18,7 @@
 
 <body>
 
-    <nav class="top-nav">
+    <nav class="top-nav" aria-label="Main Navigation">
         <div class="nav-container">
             <div class="brand">
                 <span class="wordmark" id="brand-name">Om Bharati</span>
@@ -28,15 +29,6 @@
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
-            <div id="theme-pull-cord" class="pull-cord-container">
-                <svg class="pull-cord-svg">
-                    <path id="cord-line" d="M 15 0 Q 15 60 15 120" stroke="var(--colors-ink)" stroke-width="2.5" stroke-linecap="round" fill="none" />
-                    <g id="cord-handle-group">
-                        <circle id="cord-handle-ring" cx="15" cy="120" r="14" fill="none" stroke="var(--colors-primary)" stroke-width="2" opacity="0" />
-                        <circle id="cord-handle" cx="15" cy="120" r="8" fill="var(--colors-ink)" />
-                    </g>
-                </svg>
-            </div>
         </div>
     </nav>
 
@@ -44,12 +36,12 @@
         <section class="hero-band">
             <div class="grid-container hero-grid">
                 <div class="hero-text reveal">
-                    <span class="badge-coral">SOFTWARE ENGINEERING STUDENT</span>
-                    <h1 class="display-xl">Building software while developing deeper foundations in systems, backend engineering, and computer science.</h1>
-                    <p class="body-lead">Currently focused on C++, Python, Go, SQL, data structures and algorithms, Linux, networking, and understanding how software works beneath higher-level abstractions.</p>
+                    <span class="badge-coral">COMPUTER SCIENCE UNDERGRADUATE</span>
+                    <h1 class="display-xl">Learning how software works, building projects, and exploring systems and automation.</h1>
+                    <p class="body-lead">I am an undergraduate student developing my foundations in programming, backend concepts, and systems. I enjoy understanding how software operates underneath higher-level abstractions and building practical projects along the way.</p>
                     <div class="cta-row">
                         <a href="#projects" class="button-primary">View Projects</a>
-                        <a href="#systems" class="button-secondary">Core Skills</a>
+                        <a href="#systems" class="button-secondary">Technical Skills</a>
                     </div>
                 </div>
             </div>
@@ -58,23 +50,23 @@
         <section id="systems" class="section-container">
             <div class="section-header">
                 <h2 class="display-lg">Technical Skills</h2>
-                <p class="section-subhead">Building programming skills and core computer science knowledge through hands-on development.</p>
+                <p class="section-subhead">Foundational topics and tools I use and study as I develop as a programmer.</p>
             </div>
             <div class="grid-container feature-grid">
                 <div class="feature-card reveal">
-                    <div class="feature-icon">C++ / Python</div>
-                    <h3 class="title-md">Programming & Problem Solving</h3>
-                    <p class="body-md">Actively building with C++ and Python while strengthening programming fundamentals, data structures, algorithms, object-oriented design, and problem solving.</p>
+                    <div class="feature-icon">C++ / Python / Java</div>
+                    <h3 class="title-md">Programming Languages</h3>
+                    <p class="body-md">Writing code and building projects in C++, Python, and Java, focusing on core syntax, object-oriented concepts, and programming fundamentals.</p>
                 </div>
                 <div class="feature-card reveal reveal-delay-1">
-                    <div class="feature-icon">Go / SQL</div>
-                    <h3 class="title-md">Backend & Data Foundations</h3>
-                    <p class="body-md">Developing practical experience with Go, SQL, relational databases, backend concepts, error handling, interfaces, and structured application design.</p>
+                    <div class="feature-icon">Git / Linux / CLI</div>
+                    <h3 class="title-md">Development Tools</h3>
+                    <p class="body-md">Using Git and GitHub for version control, Linux for development environments, and command-line tooling to navigate systems and streamline workflows.</p>
                 </div>
                 <div class="feature-card reveal reveal-delay-2">
-                    <div class="feature-icon">Git / Linux</div>
-                    <h3 class="title-md">Development Environment</h3>
-                    <p class="body-md">Working with Git, GitHub, Linux, command-line tooling, and development workflows while gradually expanding into deeper systems concepts.</p>
+                    <div class="feature-icon">CS Foundations</div>
+                    <h3 class="title-md">Foundational Knowledge</h3>
+                    <p class="body-md">Studying data structures, algorithms, and core computer science concepts to understand program efficiency and computer systems behavior.</p>
                 </div>
             </div>
         </section>
@@ -83,29 +75,27 @@
             <div class="grid-container split-grid">
                 <div class="dark-band-content reveal">
                     <h2 class="display-md text-on-dark">Currently Exploring</h2>
-                    <p class="body-md text-on-dark-soft">I am gradually building deeper knowledge of the systems that software runs on, alongside hands-on programming and project work.</p>
+                    <p class="body-md text-on-dark-soft">Topics and concepts I am actively studying to build a deeper understanding of systems, backend architecture, and developer workflows.</p>
                     <ul class="spec-list">
-                        <li><span>Operating Systems</span></li>
-                        <li><span>Computer Networking</span></li>
-                        <li><span>Linux Internals</span></li>
-                        <li><span>Database Internals</span></li>
-                        <li><span>Concurrency</span></li>
-                        <li><span>System Design</span></li>
+                        <li><span>Operating Systems & Concurrency</span></li>
+                        <li><span>Computer Networking & Protocols</span></li>
+                        <li><span>Linux & Command-Line Tooling</span></li>
+                        <li><span>Database Fundamentals & Internals</span></li>
+                        <li><span>System Design & Architecture</span></li>
+                        <li><span>CI/CD Pipelines & Automation</span></li>
                     </ul>
                 </div>
                 <div class="tech-stack-panel reveal reveal-delay-1" id="expertise-panel">
-                    <h3 class="panel-title">Technologies & Topics</h3>
+                    <h3 class="panel-title">Exploration Topics</h3>
 
                     <div class="expertise-categories">
                         <button class="expertise-tab active" data-category="all">All</button>
-                        <button class="expertise-tab" data-category="languages">Languages</button>
-                        <button class="expertise-tab" data-category="development">Development</button>
-                        <button class="expertise-tab" data-category="cs">Computer Science</button>
+                        <button class="expertise-tab" data-category="systems">Systems & Networking</button>
+                        <button class="expertise-tab" data-category="architecture">Architecture & Data</button>
+                        <button class="expertise-tab" data-category="workflows">Workflows & Automation</button>
                     </div>
 
-                    <div class="tag-cloud" id="dynamic-tag-cloud">
-                        <!-- Dynamic skills tags will be injected here by JS -->
-                    </div>
+                    <div class="tag-cloud" id="dynamic-tag-cloud"></div>
                 </div>
             </div>
         </section>
@@ -117,20 +107,20 @@
             </div>
             
             <div class="project-showcase-container reveal">
-                <div class="grid-container project-dashboard-grid" id="projects-grid">
-                    <!-- Project cards injected dynamically by JS -->
-                </div>
+                <div class="grid-container project-dashboard-grid" id="projects-grid"></div>
             </div>
         </section>
 
         <section id="contact" class="contact-section reveal">
             <div class="contact-card-content">
                 <span class="contact-badge">GET IN TOUCH</span>
-                <h2 class="display-xl">Let's build something useful.</h2>
-                <p class="body-lead">Open to software projects, technical collaboration, and opportunities to learn, contribute, and build.</p>
+                <h2 class="display-xl">Let's connect.</h2>
+                <div class="contact-email-display">
+                    <a href="mailto:i.ombharati@gmail.com" class="contact-email-link">i.ombharati@gmail.com</a>
+                </div>
                 <div class="contact-button-wrapper">
-                    <a href="mailto:i.ombharati@gmail.com" class="button-primary contact-btn" aria-label="Get in touch via Email">
-                        <span class="btn-text">Let Me Know</span>
+                    <a href="mailto:i.ombharati@gmail.com" class="button-primary contact-btn" aria-label="Send email to i.ombharati@gmail.com">
+                        <span class="btn-text">Send Email</span>
                         <span class="btn-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect width="20" height="16" x="2" y="4" rx="2"></rect>
@@ -147,12 +137,11 @@
 
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-left">
-                <span class="wordmark text-on-dark">Om Bharati</span>
-            </div>
             <div class="footer-right">
                 <a href="https://github.com/ombharati" class="body-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="https://linkedin.com" class="body-sm" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://linkedin.com/in/om-bharati5/" class="body-sm" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://ombharati.github.io/" class="body-sm" target="_blank" rel="noopener noreferrer">Website</a>
+                <a href="mailto:i.ombharati@gmail.com" class="body-sm">Email</a>
             </div>
         </div>
     </footer>
@@ -160,3 +149,4 @@
 </body>
 
 </html>
+
