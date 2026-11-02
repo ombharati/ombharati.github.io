@@ -1,35 +1,62 @@
 /* ==========================================================================
    Om Bharati - Minimal Developer Portfolio
    Design System & Global Stylesheet
-   No em dashes used. WCAG AA compliant contrast.
+   Strict 8-Point Geometric Scale, Concentric Curvature Math, Soft Physics Easing
+   No em dashes used. WCAG AA compliant contrast. CLS = 0 layout stability.
    ========================================================================== */
 
 :root {
+    /* 1. Strict 8-Point Spatial Grid Tokens */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+
+    /* 2. Color Palette */
     --bg: #fafafa;
     --bg-card: #ffffff;
     --text: #0a0a0a;
     --text-muted: #6b6b6b;
-    --pill-bg: #ebebeb;
-    --pill-hover: #e0e0e0;
+    --pill-bg: #f2f2f2;
+    --pill-hover: #e5e5e5;
     --border: #e5e5e5;
     --border-subtle: #f0f0f0;
     --btn-primary-bg: #0a0a0a;
     --btn-primary-hover: #262626;
     --btn-primary-text: #ffffff;
     --btn-secondary-bg: #ffffff;
-    --btn-secondary-hover: #f4f4f4;
+    --btn-secondary-hover: #f5f5f5;
     --btn-secondary-text: #0a0a0a;
+
+    /* 3. Typography */
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --font-serif: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-pill: 999px;
-    --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.04);
-    --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.03);
-    --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.06);
+
+    /* 4. Concentric Corner Curvature Math (R_inner = R_outer - padding)
+       Outer card radius: 16px, padding: 24px -> Inner elements: 8px.
+       Pills maintain absolute curvature (9999px). */
+    --radius-card: 16px;
+    --radius-inner: 8px;
+    --radius-sm: 6px;
+    --radius-pill: 9999px;
+
+    /* 5. Elevation Shadows */
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-card-hover: 0 10px 24px rgba(0, 0, 0, 0.06);
+
+    /* 6. Soft Physics Motion (Apple-style ease-out spring) */
     --nav-height: 52px;
-    --transition: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-base: 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-layout: 280ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 *, *::before, *::after {
@@ -69,7 +96,7 @@ body.home-page {
     background-color: #ffffff;
 }
 
-/* Focus styles for keyboard accessibility */
+/* Accessible focus states with zero layout shift */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
     outline: 2px solid var(--text);
     outline-offset: 2px;
@@ -81,44 +108,49 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .site-nav-wrapper {
     position: fixed;
-    top: 20px;
+    top: var(--space-5);
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
     z-index: 100;
     pointer-events: none;
-    padding: 0 16px;
+    padding: 0 var(--space-4);
 }
 
 .site-nav {
     pointer-events: auto;
     display: inline-flex;
     align-items: center;
-    background: #ffffff;
-    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(229, 229, 229, 0.85);
     border-radius: var(--radius-pill);
-    padding: 5px;
+    padding: var(--space-1);
     box-shadow: var(--shadow-soft);
-    gap: 4px;
+    gap: var(--space-1);
+    transition: background-color var(--transition-base), box-shadow var(--transition-base);
 }
 
 .nav-link {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
     border-radius: var(--radius-pill);
     font-size: 13.5px;
     font-weight: 500;
     color: var(--text);
     text-decoration: none;
-    transition: background-color var(--transition), color var(--transition), transform var(--transition);
+    line-height: 1;
+    transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
     white-space: nowrap;
+    border: 1px solid transparent; /* pre-allocated for zero shift */
 }
 
 .nav-link:hover {
-    background-color: var(--pill-bg);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .nav-link.active {
@@ -137,6 +169,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     width: 16px;
     height: 16px;
     flex-shrink: 0;
+    line-height: 1;
 }
 
 .nav-icon svg {
@@ -145,6 +178,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     stroke: currentColor;
     stroke-width: 2;
     fill: none;
+    display: block;
+}
+
+.nav-label {
+    line-height: 1;
 }
 
 /* ==========================================================================
@@ -161,7 +199,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: calc(var(--nav-height) + 36px) 24px 24px 24px;
+    padding: calc(var(--nav-height) + var(--space-8)) var(--space-6) var(--space-6) var(--space-6);
     width: 100%;
 }
 
@@ -179,7 +217,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     position: relative;
     z-index: 2;
     min-height: 100vh;
-    padding: calc(var(--nav-height) + 48px) 24px 64px 24px;
+    padding: calc(var(--nav-height) + var(--space-12)) var(--space-6) var(--space-16) var(--space-6);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -193,24 +231,28 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 /* ==========================================================================
-   Buttons and Pills
+   Buttons and Pills (Concentric Curvature & Soft Physics)
    ========================================================================== */
 
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 9px 18px;
-    border-radius: var(--radius-sm);
+    gap: var(--space-2);
+    padding: 10px var(--space-4);
+    border-radius: var(--radius-inner);
     font-size: 13.5px;
     font-weight: 500;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
-    border: 1px solid transparent;
-    line-height: 1.4;
+    line-height: 1;
     white-space: nowrap;
+    border: 1px solid transparent; /* pre-allocated border for zero layout shift */
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn:active {
+    transform: scale(0.98) translateY(0);
 }
 
 .btn-primary {
@@ -236,16 +278,18 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .btn-sm {
-    padding: 6px 14px;
+    padding: var(--space-2) var(--space-3);
     font-size: 12.5px;
+    border-radius: var(--radius-inner);
 }
 
 .btn-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
+    line-height: 1;
 }
 
 .btn-icon svg {
@@ -254,19 +298,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     stroke: currentColor;
     stroke-width: 2;
     fill: none;
+    display: block;
 }
 
 .pill-badge {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
+    gap: var(--space-2);
     background-color: var(--pill-bg);
     color: var(--text);
-    padding: 4px 12px;
+    padding: var(--space-1) var(--space-3);
     border-radius: var(--radius-pill);
     font-size: 12px;
     font-weight: 500;
-    line-height: 1.3;
+    line-height: 1;
     letter-spacing: -0.01em;
     border: 1px solid var(--border);
 }
@@ -274,15 +319,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .pill-tag {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     background-color: var(--pill-bg);
     color: var(--text);
-    padding: 5px 12px;
+    padding: var(--space-1) var(--space-3);
     border-radius: var(--radius-pill);
     font-size: 12px;
     font-weight: 500;
-    line-height: 1.35;
+    line-height: 1.25;
     border: 1px solid var(--border);
-    transition: background-color var(--transition), border-color var(--transition);
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.pill-tag:hover {
+    transform: scale(1.02);
+    border-color: #cecece;
 }
 
 .pill-tag-primary {
@@ -292,12 +343,19 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     font-weight: 600;
 }
 
+.pill-tag-primary:hover {
+    background-color: var(--btn-primary-hover);
+    border-color: var(--btn-primary-hover);
+    transform: scale(1.02);
+}
+
 .status-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background-color: #16a34a;
     box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
+    display: inline-block;
 }
 
 .divider-line {
@@ -332,12 +390,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     line-height: 1.05;
     letter-spacing: -0.035em;
     color: var(--text);
-    margin: 14px 0 10px 0;
+    margin: var(--space-3) 0 var(--space-2) 0;
 }
 
 .home-subtitle-wrapper {
-    margin-bottom: 14px;
-    min-height: 42px;
+    margin-bottom: var(--space-4);
+    min-height: 44px; /* Strictly reserved optical space prevents cumulative layout shift */
     display: flex;
     align-items: center;
 }
@@ -370,15 +428,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     font-size: 14px;
     line-height: 1.6;
     color: var(--text-muted);
-    margin-bottom: 16px;
+    margin-bottom: var(--space-4);
     max-width: 520px;
 }
 
 .meta-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 20px;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
     font-size: 13px;
     color: var(--text-muted);
 }
@@ -386,13 +444,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .meta-item {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-2);
+    line-height: 1;
 }
 
 .meta-icon {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     color: var(--text);
+    line-height: 1;
 }
 
 .meta-icon svg {
@@ -401,42 +462,44 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     stroke: currentColor;
     stroke-width: 2;
     fill: none;
+    display: block;
 }
 
 .cta-row {
     display: flex;
-    gap: 12px;
+    gap: var(--space-3);
     align-items: center;
-    margin-bottom: 18px;
+    margin-bottom: var(--space-4);
 }
 
 .home-divider {
-    margin: 0 0 14px 0;
+    margin: 0 0 var(--space-4) 0;
 }
 
 .social-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: var(--space-3);
 }
 
 .social-label {
     font-size: 12.5px;
     font-weight: 500;
     color: var(--text-muted);
+    line-height: 1;
 }
 
 .social-links-list {
     display: flex;
-    gap: 8px;
+    gap: var(--space-2);
     align-items: center;
 }
 
 .social-link-pill {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
     background: #ffffff;
     border: 1px solid var(--border);
     border-radius: var(--radius-pill);
@@ -444,7 +507,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     text-decoration: none;
     font-size: 12px;
     font-weight: 500;
-    transition: background-color var(--transition), border-color var(--transition), transform var(--transition);
+    line-height: 1;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
 }
 
 .social-link-pill:hover {
@@ -459,12 +523,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     justify-content: center;
     width: 14px;
     height: 14px;
+    line-height: 1;
 }
 
 .social-link-icon svg {
     width: 13px;
     height: 13px;
     fill: currentColor;
+    display: block;
 }
 
 .social-link-icon.stroke-svg svg {
@@ -473,14 +539,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     stroke-width: 2;
 }
 
-
-
 /* ==========================================================================
-   Page 2: About (Single Viewport Layout)
+   Page 2: About (Single Viewport Layout & Absolute Grid Symmetry)
    ========================================================================== */
 
 .about-header {
-    margin-bottom: 20px;
+    margin-bottom: var(--space-5);
     text-align: left;
 }
 
@@ -490,7 +554,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     letter-spacing: -0.03em;
     line-height: 1.1;
     color: var(--text);
-    margin: 8px 0 4px 0;
+    margin: var(--space-2) 0 var(--space-1) 0;
 }
 
 .page-subtitle {
@@ -503,24 +567,32 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .about-grid {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 32px;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
     align-items: stretch;
 }
 
 .about-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 22px 26px;
+    border-radius: var(--radius-card);
+    padding: var(--space-6);
     box-shadow: var(--shadow-card);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.about-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: #d1d1d1;
 }
 
 .about-card-section {
-    margin-bottom: 16px;
+    margin-bottom: var(--space-4);
 }
 
 .about-card-section:last-child {
@@ -533,7 +605,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--text-muted);
-    margin-bottom: 6px;
+    margin-bottom: var(--space-2);
 }
 
 .about-text {
@@ -568,14 +640,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: var(--space-2);
 }
 
 .highlight-item {
     font-size: 12.5px;
     color: var(--text-muted);
     position: relative;
-    padding-left: 14px;
+    padding-left: var(--space-4);
     line-height: 1.45;
 }
 
@@ -595,20 +667,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 18px;
+    gap: var(--space-5);
     padding: 2px 0;
 }
 
 .skills-group {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--space-3);
 }
 
 .skills-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: var(--space-2);
 }
 
 /* ==========================================================================
@@ -616,43 +688,44 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
    ========================================================================== */
 
 .projects-header {
-    margin-bottom: 18px;
+    margin-bottom: var(--space-5);
     text-align: left;
 }
 
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: var(--space-4);
     align-items: stretch;
 }
 
 .project-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 18px 20px;
+    border-radius: var(--radius-card);
+    padding: var(--space-5);
     box-shadow: var(--shadow-card);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-decoration: none;
     color: inherit;
-    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
     position: relative;
+    height: 100%;
 }
 
 .project-card:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-card-hover);
-    border-color: #cecece;
+    border-color: #d1d1d1;
 }
 
 .project-card-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 8px;
+    margin-bottom: var(--space-2);
 }
 
 .project-card-title {
@@ -660,6 +733,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     font-weight: 700;
     color: var(--text);
     letter-spacing: -0.02em;
+    line-height: 1.2;
 }
 
 .project-card-arrow {
@@ -671,7 +745,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     border-radius: var(--radius-pill);
     background: var(--pill-bg);
     color: var(--text);
-    transition: background-color var(--transition), transform var(--transition);
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    line-height: 1;
 }
 
 .project-card-arrow svg {
@@ -680,6 +755,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     stroke: currentColor;
     stroke-width: 2;
     fill: none;
+    display: block;
 }
 
 .project-card:hover .project-card-arrow {
@@ -692,14 +768,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     font-size: 12.5px;
     color: var(--text-muted);
     line-height: 1.5;
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
     flex-grow: 1;
 }
 
 .project-card-footer {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 6px;
 }
 
 /* ==========================================================================
@@ -709,13 +785,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .back-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-2);
     font-size: 13px;
     font-weight: 500;
     color: var(--text-muted);
     text-decoration: none;
-    margin-bottom: 24px;
-    transition: color var(--transition);
+    margin-bottom: var(--space-6);
+    line-height: 1;
+    transition: color var(--transition-fast);
 }
 
 .back-link:hover {
@@ -728,10 +805,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     stroke: currentColor;
     stroke-width: 2;
     fill: none;
+    display: block;
 }
 
 .project-detail-header {
-    margin-bottom: 28px;
+    margin-bottom: var(--space-8);
 }
 
 .project-detail-title {
@@ -739,7 +817,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     font-weight: 800;
     letter-spacing: -0.03em;
     line-height: 1.05;
-    margin-bottom: 8px;
+    margin-bottom: var(--space-2);
     color: var(--text);
 }
 
@@ -748,7 +826,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     font-size: clamp(20px, 2.3vw, 28px);
     font-weight: 700;
     color: var(--text-muted);
-    margin-bottom: 20px;
+    margin-bottom: var(--space-5);
 }
 
 .project-actions-bar {
@@ -756,8 +834,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    padding-bottom: 20px;
+    gap: var(--space-4);
+    padding-bottom: var(--space-5);
     border-bottom: 1px solid var(--border);
 }
 
@@ -769,12 +847,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .project-links-group {
     display: flex;
-    gap: 10px;
+    gap: var(--space-3);
     align-items: center;
 }
 
 .detail-section {
-    margin-top: 32px;
+    margin-top: var(--space-8);
 }
 
 .detail-section-title {
@@ -782,28 +860,28 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     font-weight: 700;
     color: var(--text);
     letter-spacing: -0.02em;
-    margin-bottom: 12px;
+    margin-bottom: var(--space-3);
 }
 
 .detail-paragraph {
     font-size: 14.5px;
     line-height: 1.65;
     color: var(--text-muted);
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
 }
 
 .features-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 8px;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
 }
 
 .feature-bullet {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: var(--space-3);
     font-size: 14px;
     line-height: 1.55;
     color: var(--text-muted);
@@ -821,11 +899,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .tech-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 12px;
+    margin-top: var(--space-3);
     font-size: 13.5px;
     background: #ffffff;
     border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-inner);
     overflow: hidden;
 }
 
@@ -861,20 +939,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 48px;
-    padding-top: 24px;
+    margin-top: var(--space-12);
+    padding-top: var(--space-6);
     border-top: 1px solid var(--border);
 }
 
 .project-nav-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-2);
     font-size: 13px;
     font-weight: 500;
     color: var(--text-muted);
     text-decoration: none;
-    transition: color var(--transition);
+    line-height: 1;
+    transition: color var(--transition-fast);
 }
 
 .project-nav-btn:hover {
@@ -882,50 +961,58 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 /* ==========================================================================
-   Page 5: Contact (Single Viewport Layout)
+   Page 5: Contact (Single Viewport Layout & Absolute Grid Symmetry)
    ========================================================================== */
 
 .contact-header {
-    margin-bottom: 20px;
+    margin-bottom: var(--space-5);
     text-align: left;
 }
 
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    gap: var(--space-6);
     align-items: stretch;
 }
 
 .contact-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 24px 28px;
+    border-radius: var(--radius-card);
+    padding: var(--space-6);
     box-shadow: var(--shadow-card);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.contact-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: #d1d1d1;
 }
 
 .contact-info-list {
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin-bottom: 20px;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
 }
 
 .contact-info-item {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: var(--space-3);
     text-decoration: none;
     color: inherit;
-    padding: 8px 12px;
-    border-radius: var(--radius-sm);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-inner);
     border: 1px solid var(--border);
     background: #ffffff;
-    transition: background-color var(--transition), border-color var(--transition);
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .contact-info-item:hover {
@@ -941,6 +1028,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     justify-content: center;
     color: var(--text);
     flex-shrink: 0;
+    line-height: 1;
 }
 
 .contact-info-icon svg {
@@ -949,6 +1037,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     stroke: currentColor;
     stroke-width: 2;
     fill: none;
+    display: block;
 }
 
 .contact-info-icon.fill-svg svg {
@@ -976,7 +1065,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .form-group {
-    margin-bottom: 12px;
+    margin-bottom: var(--space-3);
 }
 
 .form-label {
@@ -986,24 +1075,25 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-muted);
-    margin-bottom: 5px;
+    margin-bottom: var(--space-1);
 }
 
 .form-input, .form-textarea {
     width: 100%;
-    padding: 9px 12px;
-    border-radius: var(--radius-sm);
+    padding: 9px var(--space-3);
+    border-radius: var(--radius-inner);
     border: 1px solid var(--border);
     background: #ffffff;
     font-family: var(--font-sans);
     font-size: 13.5px;
     color: var(--text);
-    transition: border-color var(--transition);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .form-input:focus, .form-textarea:focus {
     border-color: var(--text);
     outline: none;
+    box-shadow: 0 0 0 1px var(--text);
 }
 
 .form-textarea {
@@ -1011,10 +1101,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     height: 72px;
 }
 
+/* Email Copy Button with Icon Morph & Soft Pulse */
 .contact-email-row {
     display: flex;
     align-items: stretch;
-    gap: 8px;
+    gap: var(--space-2);
     width: 100%;
 }
 
@@ -1026,17 +1117,18 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    padding: 8px 12px;
+    gap: 6px;
+    padding: var(--space-2) var(--space-3);
     background: #ffffff;
     border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-inner);
     color: var(--text-muted);
     font-family: var(--font-sans);
-    font-size: 11.5px;
+    font-size: 12px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+    line-height: 1;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
     white-space: nowrap;
 }
 
@@ -1046,26 +1138,68 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     border-color: #cecece;
 }
 
-.btn-copy-email.copied {
-    background-color: #0a0a0a;
-    color: #ffffff;
-    border-color: #0a0a0a;
+.btn-copy-email:active {
+    transform: scale(0.97);
 }
 
-.btn-copy-email svg {
-    width: 13px;
-    height: 13px;
+.icon-swap {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.icon-swap .icon-copy {
+    position: absolute;
+    inset: 0;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.icon-swap .icon-check {
+    position: absolute;
+    inset: 0;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    opacity: 0;
+    transform: scale(0.5) rotate(-20deg);
     stroke: currentColor;
-    stroke-width: 2;
+    stroke-width: 2.5;
     fill: none;
 }
 
+.btn-copy-email.copied {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border-color: var(--btn-primary-bg);
+    animation: softPulse 0.4s var(--ease-out-spring);
+}
+
+.btn-copy-email.copied .icon-copy {
+    opacity: 0;
+    transform: scale(0.5) rotate(20deg);
+}
+
+.btn-copy-email.copied .icon-check {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+@keyframes softPulse {
+    0% { transform: scale(0.96); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
+}
+
 .form-status {
-    padding: 8px 12px;
-    border-radius: var(--radius-sm);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-inner);
     font-size: 12px;
     line-height: 1.4;
-    margin-bottom: 12px;
+    margin-bottom: var(--space-3);
     transition: opacity 0.3s ease;
 }
 
@@ -1090,7 +1224,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .form-note {
     font-size: 11.5px;
     color: var(--text-muted);
-    margin-top: 8px;
+    margin-top: var(--space-2);
 }
 
 /* ==========================================================================
@@ -1098,13 +1232,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
    ========================================================================== */
 
 .fade-in {
-    animation: fadeIn 0.4s ease forwards;
+    animation: fadeIn var(--transition-layout) forwards;
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(4px);
     }
     to {
         opacity: 1;
@@ -1113,7 +1247,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 /* ==========================================================================
-   Responsive Adaptations
+   Responsive Adaptations & Precision Breakpoint Matrix
    ========================================================================== */
 
 @media (max-width: 960px), (max-height: 680px) {
@@ -1122,8 +1256,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         min-height: 100vh;
         max-height: none;
         overflow-y: auto;
-        padding-top: 86px;
-        padding-bottom: 48px;
+        padding-top: calc(var(--nav-height) + var(--space-8));
+        padding-bottom: var(--space-12);
     }
 
     .home-left {
@@ -1132,28 +1266,35 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: var(--space-5);
     }
 
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-4);
     }
 
     .contact-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: var(--space-5);
     }
 }
 
 @media (max-width: 640px) {
+    .site-nav-wrapper {
+        top: var(--space-3);
+        padding: 0 var(--space-2);
+    }
+
     .site-nav {
-        padding: 4px;
-        gap: 2px;
+        padding: 4px 6px;
+        gap: 4px;
     }
 
     .nav-link {
         padding: 7px 11px;
         font-size: 12px;
+        min-height: 40px;
     }
 
     .nav-label {
@@ -1167,31 +1308,57 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
     .projects-grid {
         grid-template-columns: 1fr;
+        gap: var(--space-4);
     }
 
     .cta-row {
         flex-direction: column;
         align-items: stretch;
+        gap: var(--space-2);
     }
 
     .btn {
         width: 100%;
+        min-height: 48px; /* Strict touch target */
+    }
+
+    .form-input, .form-textarea {
+        min-height: 48px; /* Strict touch target */
+        font-size: 16px; /* Blocks iOS Safari auto-zoom */
+    }
+
+    .form-textarea {
+        min-height: 80px;
     }
 
     .social-row {
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
+        gap: var(--space-2);
     }
 
     .project-actions-bar {
         flex-direction: column;
         align-items: flex-start;
+        gap: var(--space-4);
     }
 
     body.home-page {
-        background-size: 260px auto;
+        background-size: 240px auto;
         background-position: right bottom;
         background-attachment: scroll;
+    }
+}
+
+/* ==========================================================================
+   Accessibility: Reduced Motion Guardrail
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }

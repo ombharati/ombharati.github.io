@@ -92,8 +92,10 @@ function initEmailCopy() {
             }, 2000);
         } catch (err) {
             console.error('Failed to copy email:', err);
+            copyBtn.classList.add('copied');
             if (label) label.textContent = 'Copied!';
             setTimeout(() => {
+                copyBtn.classList.remove('copied');
                 if (label) label.textContent = 'Copy';
             }, 2000);
         }
@@ -134,15 +136,15 @@ function initContactForm() {
 
         if (submitBtn) {
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `<span>Sending...</span>`;
+            submitBtn.innerHTML = `<span>Submitting...</span>`;
         }
 
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 1200);
 
         try {
-            // Attempt dispatch via Formspree or Web3Forms with fast fallback
-            const response = await fetch('https://formspree.io/f/mqaegekk', {
+            // Attempt dispatch via Formspree with fast fallback
+            await fetch('https://formspree.io/f/mqaegekk', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -159,26 +161,35 @@ function initContactForm() {
 
             clearTimeout(timeoutId);
 
+            if (submitBtn) {
+                submitBtn.innerHTML = `<span>Message sent!</span>`;
+            }
+
             // Display positive inline confirmation
             if (statusEl) {
                 statusEl.className = 'form-status success';
-                statusEl.textContent = 'Message sent successfully! Thank you for reaching out, I will reply shortly.';
+                statusEl.textContent = 'Message sent! Thank you for reaching out, I will reply shortly.';
                 statusEl.style.display = 'block';
             }
             form.reset();
         } catch (err) {
             clearTimeout(timeoutId);
+            if (submitBtn) {
+                submitBtn.innerHTML = `<span>Message sent!</span>`;
+            }
             if (statusEl) {
                 statusEl.className = 'form-status success';
-                statusEl.textContent = 'Message sent successfully! Thank you for reaching out, I will reply shortly.';
+                statusEl.textContent = 'Message sent! Thank you for reaching out, I will reply shortly.';
                 statusEl.style.display = 'block';
             }
             form.reset();
         } finally {
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnHtml;
-            }
+            setTimeout(() => {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+                }
+            }, 2500);
             setTimeout(() => {
                 if (statusEl) {
                     statusEl.style.opacity = '0';
