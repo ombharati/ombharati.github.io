@@ -17,9 +17,9 @@ function initTypewriter() {
     if (!el) return;
 
     const roles = [
-        "Software Engineering Student",
-        "Computer Science Undergraduate",
-        "Systems & Backend Explorer"
+        "Systems & Software Explorer",
+        "C++, Linux & Backend Systems",
+        "Builder & Systems Tinkerer"
     ];
 
     let roleIndex = 0;
