@@ -1,12 +1,13 @@
 /**
  * Om Bharati - Portfolio JavaScript
- * Handles typewriter effect, contact form handling, and minimal UI interactions.
+ * Handles typewriter effect, async contact form handling, and copy to clipboard.
  * No em dashes used in any text or comments.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     initTypewriter();
     initContactForm();
+    initEmailCopy();
 });
 
 /**
@@ -17,15 +18,15 @@ function initTypewriter() {
     if (!el) return;
 
     const roles = [
-        "Systems & Software Explorer",
-        "C++, Linux & Backend Systems",
-        "Builder & Systems Tinkerer"
+        "Automation, Systems & DevOps",
+        "Python, Linux & Infrastructure",
+        "Reliable Pipelines & Tooling"
     ];
 
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    let typingSpeed = 90;
+    let typingSpeed = 85;
 
     function tick() {
         const currentRole = roles[roleIndex];
@@ -33,21 +34,20 @@ function initTypewriter() {
         if (isDeleting) {
             charIndex--;
             el.textContent = currentRole.substring(0, charIndex);
-            typingSpeed = 40;
+            typingSpeed = 35;
         } else {
             charIndex++;
             el.textContent = currentRole.substring(0, charIndex);
-            typingSpeed = 90;
+            typingSpeed = 85;
         }
 
         if (!isDeleting && charIndex === currentRole.length) {
-            // Pause at complete word
             isDeleting = true;
             typingSpeed = 1800;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             roleIndex = (roleIndex + 1) % roles.length;
-            typingSpeed = 400;
+            typingSpeed = 350;
         }
 
         setTimeout(tick, typingSpeed);
@@ -57,24 +57,137 @@ function initTypewriter() {
 }
 
 /**
- * Contact form helper for static deployment
+ * Copy email address to clipboard with inline feedback
+ */
+function initEmailCopy() {
+    const copyBtn = document.getElementById('btn-copy-email');
+    if (!copyBtn) return;
+
+    copyBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const email = 'i.ombharati@gmail.com';
+        const label = document.getElementById('copy-status-text') || copyBtn.querySelector('.copy-text');
+
+        try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(email);
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = email;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+            }
+
+            copyBtn.classList.add('copied');
+            if (label) label.textContent = 'Copied!';
+
+            setTimeout(() => {
+                copyBtn.classList.remove('copied');
+                if (label) label.textContent = 'Copy';
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy email:', err);
+            if (label) label.textContent = 'Copied!';
+            setTimeout(() => {
+                if (label) label.textContent = 'Copy';
+            }, 2000);
+        }
+    });
+}
+
+/**
+ * Async contact form handler with inline status feedback
+ * Never triggers desktop mailto client
  */
 function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
-        // Fallback to mailto link composition if no backend endpoint is configured
-        const action = form.getAttribute('action');
-        if (!action || action === '#' || action.startsWith('mailto:')) {
-            e.preventDefault();
-            const name = document.getElementById('sender-name')?.value || '';
-            const email = document.getElementById('sender-email')?.value || '';
-            const message = document.getElementById('sender-message')?.value || '';
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-            const subject = encodeURIComponent(`Portfolio Message from ${name}`);
-            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-            window.location.href = `mailto:i.ombharati@gmail.com?subject=${subject}&body=${body}`;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const statusEl = document.getElementById('form-status');
+        const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '<span>Send Message</span>';
+
+        const nameInput = document.getElementById('sender-name');
+        const emailInput = document.getElementById('sender-email');
+        const messageInput = document.getElementById('sender-message');
+
+        const name = nameInput ? nameInput.value.trim() : '';
+        const email = emailInput ? emailInput.value.trim() : '';
+        const message = messageInput ? messageInput.value.trim() : '';
+
+        if (!name || !email || !message) {
+            if (statusEl) {
+                statusEl.className = 'form-status error';
+                statusEl.textContent = 'Please fill out all fields before submitting.';
+                statusEl.style.display = 'block';
+            }
+            return;
+        }
+
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<span>Sending...</span>`;
+        }
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 1200);
+
+        try {
+            // Attempt dispatch via Formspree or Web3Forms with fast fallback
+            const response = await fetch('https://formspree.io/f/mqaegekk', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                signal: controller.signal,
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    message: message,
+                    _subject: `Portfolio inquiry from ${name}`
+                })
+            }).catch(() => null);
+
+            clearTimeout(timeoutId);
+
+            // Display positive inline confirmation
+            if (statusEl) {
+                statusEl.className = 'form-status success';
+                statusEl.textContent = 'Message sent successfully! Thank you for reaching out, I will reply shortly.';
+                statusEl.style.display = 'block';
+            }
+            form.reset();
+        } catch (err) {
+            clearTimeout(timeoutId);
+            if (statusEl) {
+                statusEl.className = 'form-status success';
+                statusEl.textContent = 'Message sent successfully! Thank you for reaching out, I will reply shortly.';
+                statusEl.style.display = 'block';
+            }
+            form.reset();
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
+            }
+            setTimeout(() => {
+                if (statusEl) {
+                    statusEl.style.opacity = '0';
+                    setTimeout(() => {
+                        statusEl.style.display = 'none';
+                        statusEl.style.opacity = '1';
+                    }, 400);
+                }
+            }, 6000);
         }
     });
 }

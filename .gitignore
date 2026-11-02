@@ -1,0 +1,15 @@
+# UI verification & screenshots (never commit)
+.ui-verification/
+screenshots/
+verify_ui.js
+scripts/
+
+# Dependencies and caches
+node_modules/
+package-lock.json
+package.json
+.cache/
+
+# OS artifacts
+.DS_Store
+Thumbs.db

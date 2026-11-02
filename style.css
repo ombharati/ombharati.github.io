@@ -285,6 +285,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     transition: background-color var(--transition), border-color var(--transition);
 }
 
+.pill-tag-primary {
+    background-color: var(--text);
+    color: #ffffff;
+    border-color: var(--text);
+    font-weight: 600;
+}
+
 .status-dot {
     width: 6px;
     height: 6px;
@@ -587,9 +594,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    gap: 28px;
-    padding: 8px 0;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 2px 0;
 }
 
 .skills-group {
@@ -1004,6 +1011,82 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     height: 72px;
 }
 
+.contact-email-row {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+}
+
+.contact-email-main {
+    flex: 1;
+}
+
+.btn-copy-email {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 12px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+    white-space: nowrap;
+}
+
+.btn-copy-email:hover {
+    background-color: var(--pill-bg);
+    color: var(--text);
+    border-color: #cecece;
+}
+
+.btn-copy-email.copied {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    border-color: #0a0a0a;
+}
+
+.btn-copy-email svg {
+    width: 13px;
+    height: 13px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+}
+
+.form-status {
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    transition: opacity 0.3s ease;
+}
+
+.form-status.success {
+    background-color: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.form-status.error {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.contact-card-top {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
 .form-note {
     font-size: 11.5px;
     color: var(--text-muted);
@@ -1104,5 +1187,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     .project-actions-bar {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    body.home-page {
+        background-size: 260px auto;
+        background-position: right bottom;
+        background-attachment: scroll;
     }
 }

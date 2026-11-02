@@ -14,8 +14,8 @@
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/ %3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='18' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3EO%3C/text%3E%3C/svg%3E">
     
-    <link rel="stylesheet" href="style.css?v=3">
-    <script src="script.js?v=3" defer></script>
+    <link rel="stylesheet" href="style.css?v=4">
+    <script src="script.js?v=4" defer></script>
     <style>
         body { background-color: #fafafa; color: #0a0a0a; margin: 0; }
         svg { max-width: 100%; display: inline-block; vertical-align: middle; }
@@ -77,19 +77,25 @@
                 
                 <!-- Left Column: Contact Methods & CV -->
                 <div class="contact-card">
-                    <div>
+                    <div class="contact-card-top">
                         <div class="section-label" style="margin-bottom: 12px;">Contact Channels</div>
                         <div class="contact-info-list">
                             
-                            <a href="mailto:i.ombharati@gmail.com" class="contact-info-item">
-                                <span class="contact-info-icon">
-                                    <svg width="15" height="15" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                                </span>
-                                <div class="contact-info-meta">
-                                    <span class="contact-info-label">Direct Email</span>
-                                    <span class="contact-info-val">i.ombharati@gmail.com</span>
-                                </div>
-                            </a>
+                            <div class="contact-email-row">
+                                <a href="mailto:i.ombharati@gmail.com" class="contact-info-item contact-email-main">
+                                    <span class="contact-info-icon">
+                                        <svg width="15" height="15" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                    </span>
+                                    <div class="contact-info-meta">
+                                        <span class="contact-info-label">Direct Email</span>
+                                        <span class="contact-info-val">i.ombharati@gmail.com</span>
+                                    </div>
+                                </a>
+                                <button type="button" class="btn-copy-email" id="btn-copy-email" aria-label="Copy email address" title="Copy email address to clipboard">
+                                    <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                                    <span class="copy-text" id="copy-status-text">Copy</span>
+                                </button>
+                            </div>
 
                             <a href="https://github.com/ombharati" class="contact-info-item" target="_blank" rel="noopener noreferrer">
                                 <span class="contact-info-icon fill-svg">
@@ -114,21 +120,21 @@
                         </div>
                     </div>
 
-                    <div style="padding-top: 10px;">
+                    <div style="padding-top: 14px;">
                         <a href="assets/resume.pdf" class="btn btn-secondary btn-sm" download="Om_Bharati_Resume.pdf">
                             <span class="btn-icon" aria-hidden="true">
                                 <svg width="15" height="15" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
                             </span>
-                            <span>Download Resume (PDF)</span>
+                            <span>Download Full Resume</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Right Column: Minimal Form -->
+                <!-- Right Column: Minimal Async Form -->
                 <div class="contact-card">
-                    <div>
+                    <div class="contact-card-top">
                         <div class="section-label" style="margin-bottom: 12px;">Send a Direct Message</div>
-                        <form id="contact-form" action="mailto:i.ombharati@gmail.com" method="post" enctype="text/plain">
+                        <form id="contact-form" novalidate>
                             <div class="form-group">
                                 <label for="sender-name" class="form-label">Your Name</label>
                                 <input type="text" id="sender-name" name="name" class="form-input" placeholder="e.g. Jane Doe" required>
@@ -141,6 +147,9 @@
                                 <label for="sender-message" class="form-label">Message</label>
                                 <textarea id="sender-message" name="message" class="form-textarea" placeholder="Drop a note about an opportunity, project feedback, or just say hi..." required></textarea>
                             </div>
+                            
+                            <div id="form-status" class="form-status" style="display: none;" role="status"></div>
+
                             <button type="submit" class="btn btn-primary btn-sm" style="width: 100%;">
                                 <span>Send Message</span>
                                 <span class="btn-icon" aria-hidden="true">
@@ -148,7 +157,7 @@
                                 </span>
                             </button>
                             <p class="form-note">
-                                Submitting automatically launches your default email client with your message pre-filled.
+                                Direct dispatch. Messages are delivered straight to my primary inbox.
                             </p>
                         </form>
                     </div>
