@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spreadsheet Engine - Om Bharati</title>
+    <meta name="description" content="Technical overview of Spreadsheet Engine, a Python computation engine with AST parsing and DFS cycle detection.">
+    
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%230a0a0a%22/><text x=%2216%22 y=%2222%22 font-family=%22sans-serif%22 font-size=%2218%22 font-weight=%22bold%22 fill=%22%23ffffff%22 text-anchor=%22middle%22>O</text></svg>">
+    
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <!-- Floating Pill Navigation (Projects Active) -->
+    <header class="site-nav-wrapper">
+        <nav class="site-nav" aria-label="Main Navigation">
+            <a href="../index.html" class="nav-link">
+                <span class="nav-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </span>
+                <span class="nav-label">Home</span>
+            </a>
+            <a href="../about.html" class="nav-link">
+                <span class="nav-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><rect width="18" height="14" x="3" y="5" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M15 9h2"/><path d="M15 13h2"/><path d="M6 16c0-1.5 1.5-2 3-2s3 .5 3 2"/></svg>
+                </span>
+                <span class="nav-label">About</span>
+            </a>
+            <a href="../projects.html" class="nav-link active" aria-current="page">
+                <span class="nav-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2"/></svg>
+                </span>
+                <span class="nav-label">Projects</span>
+            </a>
+            <a href="../contact.html" class="nav-link">
+                <span class="nav-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </span>
+                <span class="nav-label">Contact</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Scrollable Detailed Content Container -->
+    <main class="scrollable-page">
+        <div class="content-container fade-in">
+            
+            <!-- Back to Projects link -->
+            <a href="../projects.html" class="back-link">
+                <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+                <span>Back to all projects</span>
+            </a>
+
+            <!-- Project Header -->
+            <div class="project-detail-header">
+                <h1 class="project-detail-title">Spreadsheet Engine</h1>
+                <p class="project-detail-tagline">Lightweight computation engine, AST formula parser, and dependency graph in Python.</p>
+
+                <!-- Actions and Meta Bar -->
+                <div class="project-actions-bar">
+                    <div class="project-tech-pills">
+                        <span class="pill-tag">Python 3</span>
+                        <span class="pill-tag">AST Parser</span>
+                        <span class="pill-tag">Graph Algorithms</span>
+                        <span class="pill-tag">DFS</span>
+                        <span class="pill-tag">CLI</span>
+                    </div>
+
+                    <div class="project-links-group">
+                        <a href="https://github.com/ombharati/spreadsheet-engine" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">
+                            <span class="btn-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" style="fill: currentColor; stroke: none;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            </span>
+                            <span>GitHub Repository</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overview Section -->
+            <section class="detail-section">
+                <h2 class="detail-section-title">Overview</h2>
+                <p class="detail-paragraph">
+                    Spreadsheet Engine is a standalone computational core built in Python without third-party libraries. It models the core mechanics behind modern spreadsheets: coordinate-based storage, mathematical expression parsing, dynamic cell dependency tracking, and automatic downstream recalculation.
+                </p>
+                <p class="detail-paragraph">
+                    The project was built from first principles to explore Abstract Syntax Tree (AST) manipulation, directed acyclic graphs (DAGs), cycle detection in directed graphs, and structured data persistence via JSON and CSV.
+                </p>
+            </section>
+
+            <!-- Key Features Section -->
+            <section class="detail-section">
+                <h2 class="detail-section-title">Key Features</h2>
+                <ul class="features-list">
+                    <li class="feature-bullet">
+                        <span class="feature-icon-dot" aria-hidden="true"></span>
+                        <span>In-memory cell storage dictionary with clean formatted ASCII grid output for terminal interaction.</span>
+                    </li>
+                    <li class="feature-bullet">
+                        <span class="feature-icon-dot" aria-hidden="true"></span>
+                        <span>Safe mathematical formula parsing using Python's built-in ast module, supporting arithmetic operators, exponentiation, and parentheses without hazardous eval() calls.</span>
+                    </li>
+                    <li class="feature-bullet">
+                        <span class="feature-icon-dot" aria-hidden="true"></span>
+                        <span>Built-in functions and cell range aggregation, including SUM, AVERAGE, MIN, MAX, and conditional IF expressions over ranges like A1:A5.</span>
+                    </li>
+                    <li class="feature-bullet">
+                        <span class="feature-icon-dot" aria-hidden="true"></span>
+                        <span>Automatic dependency tracking and cascade recalculation that traverses downstream dependents when source values change.</span>
+                    </li>
+                    <li class="feature-bullet">
+                        <span class="feature-icon-dot" aria-hidden="true"></span>
+                        <span>Depth-First Search (DFS) circular dependency detection, safely marking cycle participants with #CIRCULAR! without terminating the process.</span>
+                    </li>
+                    <li class="feature-bullet">
+                        <span class="feature-icon-dot" aria-hidden="true"></span>
+                        <span>Data persistence with JSON state save/load capabilities and CSV formatted export.</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Tech Stack Section -->
+            <section class="detail-section">
+                <h2 class="detail-section-title">Tech Stack &amp; Utilization</h2>
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th>Technology</th>
+                            <th>Role in Project</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Python 3</td>
+                            <td>Primary programming language providing clear data structures and rapid algorithmic modeling.</td>
+                        </tr>
+                        <tr>
+                            <td>ast (Standard Library)</td>
+                            <td>Parses formula string expressions into node hierarchies for safe recursive evaluation.</td>
+                        </tr>
+                        <tr>
+                            <td>Graph Algorithms (DFS)</td>
+                            <td>Traverses cell dependency relationships to detect cycles and determine correct recomputation order.</td>
+                        </tr>
+                        <tr>
+                            <td>JSON &amp; CSV</td>
+                            <td>Enables snapshot persistence of spreadsheet cell states and export of computed values.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Architecture & How It Works -->
+            <section class="detail-section">
+                <h2 class="detail-section-title">How It Works &amp; Architecture</h2>
+                <p class="detail-paragraph">
+                    The engine operates through four decoupled subsystems:
+                </p>
+                <p class="detail-paragraph">
+                    <strong>1. Coordinate Store:</strong> An in-memory mapping between alphanumeric cell coordinates (e.g. B2) and cell objects storing raw user inputs, computed results, precedent references, and dependent listeners.
+                </p>
+                <p class="detail-paragraph">
+                    <strong>2. AST Evaluator:</strong> When a user sets a cell formula prefixed with '=', the expression is parsed into a Python AST. The evaluator traverses binary operator nodes (Add, Sub, Mult, Div, Pow) and recursively resolves cell coordinates against the grid store.
+                </p>
+                <p class="detail-paragraph">
+                    <strong>3. Dependency Graph &amp; Cycle Detection:</strong> Whenever formulas reference other cells, directed edges are established. Before committing a calculation, a Depth-First Search algorithm checks for cycles in the dependency tree. If a circular reference is found (e.g. A1 depends on B1 which depends on A1), the engine assigns a #CIRCULAR! error status to avoid infinite recursion.
+                </p>
+                <p class="detail-paragraph">
+                    <strong>4. Cascade Recalculation:</strong> When a precedent cell is modified or cleared, the engine notifies all listening cells, causing an orderly recalculation cascade.
+                </p>
+            </section>
+
+            <!-- Role & Key Learnings -->
+            <section class="detail-section">
+                <h2 class="detail-section-title">My Role &amp; What I Learned</h2>
+                <p class="detail-paragraph">
+                    I architected and developed the entire computation engine from scratch. This project provided practical experience with directed graph algorithms, cycle detection mechanics, parsing techniques, and avoiding hazardous evaluation patterns in software design.
+                </p>
+            </section>
+
+            <!-- Navigation Footer -->
+            <div class="project-nav-footer">
+                <a href="liftoff-protocol.html" class="project-nav-btn">
+                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="m15 18-6-6 6-6"/></svg>
+                    <span>Previous: Liftoff Protocol</span>
+                </a>
+                <a href="cyberguard.html" class="project-nav-btn">
+                    <span>Next: CYBERGUARD</span>
+                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="m9 18 6-6-6-6"/></svg>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

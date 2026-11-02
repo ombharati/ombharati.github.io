@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERGUARD - Om Bharati</title>
+    <meta name="description" content="Technical overview of CYBERGUARD, a local-first cybersecurity platform with dual-model neural inference.">
+    
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%230a0a0a%22/><text x=%2216%22 y=%2222%22 font-family=%22sans-serif%22 font-size=%2218%22 font-weight=%22bold%22 fill=%22%23ffffff%22 text-anchor=%22middle%22>O</text></svg>">
+    
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <!-- Floating Pill Navigation (Projects Active) -->
+    <header class="site-nav-wrapper">
+        <nav class="site-nav" aria-label="Main Navigation">
+            <a href="../index.html" class="nav-link">
+                <span class="nav-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </span>
+                <span class="nav-label">Home</span>
+            </a>
+            <a href="../about.html" class="nav-link">
+                <span class="nav-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><rect width="18" height="14" x="3" y="5" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M15 9h2"/><path d="M15 13h2"/><path d="M6 16c0-1.5 1.5-2 3-2s3 .5 3 2"/></svg>
+                </span>
+                <span class="nav-label">About</span>
+            </a>
+            <a href="../projects.html" class="nav-link active" aria-current="page">
+                <span class="nav-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2"/></svg>
+                </span>
+                <span class="nav-label">Projects</span>
+            </a>
+            <a href="../contact.html" class="nav-link">
+                <span class="nav-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </span>
+                <span class="nav-label">Contact</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Scrollable Detailed Content Container -->
+    <main class="scrollable-page">
+        <div class="content-container fade-in">
+            
+            <!-- Back to Projects link -->
+            <a href="../projects.html" class="back-link">
+                <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+                <span>Back to all projects</span>
+            </a>
+
+            <!-- Project Header -->
+            <div class="project-detail-header">
+                <h1 class="project-detail-title">CYBERGUARD</h1>
+                <p class="project-detail-tagline">Local-first, privacy-preserving cybersecurity threat intelligence platform.</p>
+
+                <!-- Actions and Meta Bar -->
+                <div class="project-actions-bar">
+                    <div class="project-tech-pills">
+                        <span class="pill-tag">FastAPI</span>
+                        <span class="pill-tag">Docker</span>
+                        <span class="pill-tag">Cloudflare Tunnel</span>
+                        <span class="pill-tag">Ollama</span>
+                        <span class="pill-tag">Redis</span>
+                        <span class="pill-tag">PostgreSQL</span>
+                    </div>
+
+                    <div class="project-links-group">
+                        <a href="https://github.com/ombharati/CYBERGUARD" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">
+                            <span class="btn-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" style="fill: currentColor; stroke: none;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            </span>
+                            <span>GitHub Repository</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overview Section -->
+            <section class="detail-section">
+                <h2 class="detail-section-title">Overview</h2>
+                <p class="detail-paragraph">
+                    CYBERGUARD is a collaborative hackathon project built to provide local-first, privacy-preserving threat intelligence. Security analysts frequently need to evaluate sensitive URLs, authentication logs, and potential phishing emails without leaking company telemetry or confidential payloads to cloud LLMs or third-party APIs.
+                </p>
+                <p class="detail-paragraph">
+                    The platform decouples deterministic heuristic signal extractors from neural inference pipelines and scoring logic, allowing full assessment capabilities directly on developer-grade hardware.
+                </p>
+            </section>
+
+            <!-- Key Features Section -->
+            <section class="detail-section">
+                <h2 class="detail-section-title">Key Features</h2>
+                <ul class="features-list">
+                    <li class="feature-bullet">
+                        <span class="feature-icon-dot" aria-hidden="true"></span>
+                        <span>High-throughput local URL screener matching incoming links against an indexed dataset of 2M+ known malicious records.</span>
+                    </li>
+                    <li class="feature-bullet">
+                        <span class="feature-icon-dot" aria-hidden="true"></span>
+                        <span>Multi-model inference pipeline integrating Laya (ModernBERT-large on CPU, approx 80ms) for structured signal classification and quantized Qwen 8B (via Ollama on GPU) for narrative explanations.</span>
+                    </li>
+                    <li class="feature-bullet">
+                        <span class="feature-icon-dot" aria-hidden="true"></span>
+                        <span>Deterministic Python Risk Engine that synthesizes raw evidence into a repeatable 0 to 100 risk score and tier without handing final decision authority to neural models.</span>
+                    </li>
+                    <li class="feature-bullet">
+                        <span class="feature-icon-dot" aria-hidden="true"></span>
+                        <span>Cloudflare Tunnel networking setup providing secure, encrypted remote access while the stack ran locally on a development laptop (16 GB RAM, 6 GB VRAM).</span>
+                    </li>
+                    <li class="feature-bullet">
+                        <span class="feature-icon-dot" aria-hidden="true"></span>
+                        <span>Resilient failure boundaries ensuring that if neural backends become unavailable, scans gracefully fall back to deterministic heuristics.</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Tech Stack Section -->
+            <section class="detail-section">
+                <h2 class="detail-section-title">Tech Stack &amp; Utilization</h2>
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th>Technology</th>
+                            <th>Role in Project</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>FastAPI &amp; Python</td>
+                            <td>Asynchronous API layer serving scan endpoints, validation, and middleware.</td>
+                        </tr>
+                        <tr>
+                            <td>Docker Compose</td>
+                            <td>Containerizes and orchestrates the database, cache, workers, and API services into an isolated network.</td>
+                        </tr>
+                        <tr>
+                            <td>Cloudflare Tunnel</td>
+                            <td>Exposes local application endpoints to remote collaborators without opening router firewall ports.</td>
+                        </tr>
+                        <tr>
+                            <td>Ollama &amp; Qwen 8B</td>
+                            <td>Runs quantized local large language models on consumer GPUs for threat contextualization.</td>
+                        </tr>
+                        <tr>
+                            <td>ModernBERT (Laya)</td>
+                            <td>Executes high-speed CPU-based neural classification for URL phishing indicators.</td>
+                        </tr>
+                        <tr>
+                            <td>Redis &amp; PostgreSQL</td>
+                            <td>Manages task queues for asynchronous report workers and provides durable scan persistence.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Architecture & How It Works -->
+            <section class="detail-section">
+                <h2 class="detail-section-title">How It Works &amp; Architecture</h2>
+                <p class="detail-paragraph">
+                    CYBERGUARD enforces a core principle: detection tools produce evidence, but the deterministic Risk Engine makes the final decision.
+                </p>
+                <p class="detail-paragraph">
+                    When an analyst submits an indicator, the system initiates deterministic rules checking Shannon entropy, character homoglyphs, SSRF patterns, and cross-references a 2M+ URL local dataset. In parallel, the neural adapters analyze linguistic indicators and contextual intent.
+                </p>
+                <p class="detail-paragraph">
+                    All gathered signals are forwarded to the mathematical Risk Engine, which computes calibrated threat scores. An asynchronous worker then generates plain-English analyst summaries without delaying immediate scan outcomes.
+                </p>
+            </section>
+
+            <!-- Role & Key Learnings -->
+            <section class="detail-section">
+                <h2 class="detail-section-title">My Role &amp; What I Learned</h2>
+                <p class="detail-paragraph">
+                    I contributed to the system architecture and DevOps for the team. My focus included setting up Docker Compose environments, configuring Redis worker pipelines, managing Ollama runtime configurations under constrained hardware resources, and deploying Cloudflare Tunnel for secure remote collaboration during the hackathon.
+                </p>
+            </section>
+
+            <!-- Navigation Footer -->
+            <div class="project-nav-footer">
+                <a href="spreadsheet-engine.html" class="project-nav-btn">
+                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="m15 18-6-6 6-6"/></svg>
+                    <span>Previous: Spreadsheet Engine</span>
+                </a>
+                <a href="budget-guardian.html" class="project-nav-btn">
+                    <span>Next: Budget Guardian</span>
+                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="m9 18 6-6-6-6"/></svg>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

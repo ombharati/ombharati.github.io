@@ -1,152 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Om Bharati - Computer Science Undergraduate</title>
+    <title>Om Bharati - Software Engineering Student</title>
+    <meta name="description" content="Personal portfolio of Om Bharati, a Computer Science undergraduate focused on systems engineering, Linux, and backend fundamentals.">
+    
+    <!-- Google Fonts: Inter & Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%2300416A%22/><text x=%2216%22 y=%2222%22 font-family=%22monospace%22 font-size=%2218%22 font-weight=%22bold%22 fill=%22%23ffffff%22 text-anchor=%22middle%22>O</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%230a0a0a%22/><text x=%2216%22 y=%2222%22 font-family=%22sans-serif%22 font-size=%2218%22 font-weight=%22bold%22 fill=%22%23ffffff%22 text-anchor=%22middle%22>O</text></svg>">
+    
     <link rel="stylesheet" href="style.css">
-    <script>document.documentElement.classList.add('js');</script>
     <script src="script.js" defer></script>
 </head>
+<body class="home-page">
 
-<body>
+    <!-- Floating Pill Navigation -->
+    <header class="site-nav-wrapper">
+        <nav class="site-nav" aria-label="Main Navigation">
+            <a href="index.html" class="nav-link active" aria-current="page">
+                <span class="nav-icon" aria-hidden="true">
+                    <!-- Home icon -->
+                    <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </span>
+                <span class="nav-label">Home</span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <span class="nav-icon" aria-hidden="true">
+                    <!-- ID Card icon -->
+                    <svg viewBox="0 0 24 24"><rect width="18" height="14" x="3" y="5" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M15 9h2"/><path d="M15 13h2"/><path d="M6 16c0-1.5 1.5-2 3-2s3 .5 3 2"/></svg>
+                </span>
+                <span class="nav-label">About</span>
+            </a>
+            <a href="projects.html" class="nav-link">
+                <span class="nav-icon" aria-hidden="true">
+                    <!-- Folder Open icon -->
+                    <svg viewBox="0 0 24 24"><path d="m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2"/></svg>
+                </span>
+                <span class="nav-label">Projects</span>
+            </a>
+            <a href="contact.html" class="nav-link">
+                <span class="nav-icon" aria-hidden="true">
+                    <!-- Mail icon -->
+                    <svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </span>
+                <span class="nav-label">Contact</span>
+            </a>
+        </nav>
+    </header>
 
-    <nav class="top-nav" aria-label="Main Navigation">
-        <div class="nav-container">
-            <div class="brand">
-                <span class="wordmark" id="brand-name">Om Bharati</span>
-            </div>
-            <div class="nav-links">
-                <a href="#systems" class="nav-link">Skills</a>
-                <a href="#architecture" class="nav-link">Exploring</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#contact" class="nav-link">Contact</a>
+    <!-- Main Single Viewport Container -->
+    <main class="viewport-page">
+        <div class="viewport-inner">
+            <div class="home-layout">
+                
+                <!-- Home Content (Left Column) -->
+                <div class="home-left fade-in">
+                    <!-- 1. Small Gray Pill Badge with tiny status dot -->
+                    <div class="pill-badge">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        <span>Open to internships &amp; opportunities</span>
+                    </div>
+
+                    <!-- 2. Huge Bold Heading broken across two lines -->
+                    <h1 class="home-title">
+                        Hi, I'm<br>Om Bharati
+                    </h1>
+
+                    <!-- 3. Serif Subtitle with Blinking Cursor & Typewriter Effect -->
+                    <div class="home-subtitle-wrapper">
+                        <div class="home-subtitle">
+                            <span id="typewriter-text">Software Engineering Student</span><span class="cursor" aria-hidden="true"></span>
+                        </div>
+                    </div>
+
+                    <!-- 4. Short Muted Paragraph (2 lines) about what he does -->
+                    <p class="home-bio">
+                        Computer Science undergraduate focused on systems programming, Linux, and backend fundamentals. Learning how software operates beneath higher-level abstractions and building practical tools.
+                    </p>
+
+                    <!-- 5. Meta Row with small icons -->
+                    <div class="meta-row">
+                        <div class="meta-item">
+                            <span class="meta-icon" aria-hidden="true">
+                                <!-- Map Pin -->
+                                <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </span>
+                            <span>Based in Bhubaneswar, India</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-icon" aria-hidden="true">
+                                <!-- Briefcase -->
+                                <svg viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            </span>
+                            <span>First-year B.Tech Student</span>
+                        </div>
+                    </div>
+
+                    <!-- 6. Two Action Buttons -->
+                    <div class="cta-row">
+                        <a href="contact.html" class="btn btn-primary">
+                            <span>Hire Me</span>
+                            <span class="btn-icon" aria-hidden="true">
+                                <!-- Arrow right -->
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </span>
+                        </a>
+                        <a href="assets/resume.pdf" class="btn btn-secondary" download="Om_Bharati_Resume.pdf">
+                            <span class="btn-icon" aria-hidden="true">
+                                <!-- Download -->
+                                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                            </span>
+                            <span>Download CV</span>
+                        </a>
+                    </div>
+
+                    <!-- 7. Thin Divider Line -->
+                    <hr class="divider-line home-divider">
+
+                    <!-- Follow Me Social Links -->
+                    <div class="social-row">
+                        <span class="social-label">Follow me:</span>
+                        <div class="social-links-list">
+                            <a href="https://github.com/ombharati" class="social-link-pill" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+                                <span class="social-link-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                                </span>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/om-bharati5/" class="social-link-pill" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+                                <span class="social-link-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                                </span>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="mailto:i.ombharati@gmail.com" class="social-link-pill" aria-label="Email Om Bharati">
+                                <span class="social-link-icon stroke-svg">
+                                    <svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                </span>
+                                <span>Email</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </nav>
-
-    <main>
-        <section class="hero-band">
-            <div class="grid-container hero-grid">
-                <div class="hero-text reveal">
-                    <span class="badge-coral">COMPUTER SCIENCE UNDERGRADUATE</span>
-                    <h1 class="display-xl">Learning how software works, building projects, and exploring systems and automation.</h1>
-                    <p class="body-lead">I am an undergraduate student developing my foundations in programming, backend concepts, and systems. I enjoy understanding how software operates underneath higher-level abstractions and building practical projects along the way.</p>
-                    <div class="cta-row">
-                        <a href="#projects" class="button-primary">View Projects</a>
-                        <a href="#systems" class="button-secondary">Technical Skills</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="systems" class="section-container">
-            <div class="section-header">
-                <h2 class="display-lg">Technical Skills</h2>
-                <p class="section-subhead">Foundational topics and tools I use and study as I develop as a programmer.</p>
-            </div>
-            <div class="grid-container feature-grid">
-                <div class="feature-card reveal">
-                    <div class="feature-icon">C++ / Python / Java</div>
-                    <h3 class="title-md">Programming Languages</h3>
-                    <p class="body-md">Writing code and building projects in C++, Python, and Java, focusing on core syntax, object-oriented concepts, and programming fundamentals.</p>
-                </div>
-                <div class="feature-card reveal reveal-delay-1">
-                    <div class="feature-icon">Git / Linux / CLI</div>
-                    <h3 class="title-md">Development Tools</h3>
-                    <p class="body-md">Using Git and GitHub for version control, Linux for development environments, and command-line tooling to navigate systems and streamline workflows.</p>
-                </div>
-                <div class="feature-card reveal reveal-delay-2">
-                    <div class="feature-icon">CS Foundations</div>
-                    <h3 class="title-md">Foundational Knowledge</h3>
-                    <p class="body-md">Studying data structures, algorithms, and core computer science concepts to understand program efficiency and computer systems behavior.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="architecture" class="section-dark-band">
-            <div class="grid-container split-grid">
-                <div class="dark-band-content reveal">
-                    <h2 class="display-md text-on-dark">Currently Exploring</h2>
-                    <p class="body-md text-on-dark-soft">Topics and concepts I am actively studying to build a deeper understanding of systems, backend architecture, and developer workflows.</p>
-                    <ul class="spec-list">
-                        <li><span>Operating Systems & Concurrency</span></li>
-                        <li><span>Computer Networking & Protocols</span></li>
-                        <li><span>Linux & Command-Line Tooling</span></li>
-                        <li><span>Database Fundamentals & Internals</span></li>
-                        <li><span>System Design & Architecture</span></li>
-                        <li><span>CI/CD Pipelines & Automation</span></li>
-                    </ul>
-                </div>
-                <div class="tech-stack-panel reveal reveal-delay-1" id="expertise-panel">
-                    <h3 class="panel-title">Exploration Topics</h3>
-
-                    <div class="expertise-categories">
-                        <button class="expertise-tab active" data-category="all">All</button>
-                        <button class="expertise-tab" data-category="systems">Systems & Networking</button>
-                        <button class="expertise-tab" data-category="architecture">Architecture & Data</button>
-                        <button class="expertise-tab" data-category="workflows">Workflows & Automation</button>
-                    </div>
-
-                    <div class="tag-cloud" id="dynamic-tag-cloud"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="section-container">
-            <div class="section-header">
-                <h2 class="display-lg">Featured Projects</h2>
-                <p class="section-subhead">Projects built while learning, experimenting, and turning programming concepts into working software.</p>
-            </div>
-            
-            <div class="project-showcase-container reveal">
-                <div class="grid-container project-dashboard-grid" id="projects-grid"></div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact-section reveal">
-            <div class="contact-card-content">
-                <span class="contact-badge">GET IN TOUCH</span>
-                <h2 class="display-xl">Let's connect.</h2>
-                <div class="contact-email-display">
-                    <a href="mailto:i.ombharati@gmail.com" class="contact-email-link">i.ombharati@gmail.com</a>
-                </div>
-                <div class="contact-button-wrapper">
-                    <a href="mailto:i.ombharati@gmail.com" class="button-primary contact-btn" aria-label="Send email to i.ombharati@gmail.com">
-                        <span class="btn-text">Send Email</span>
-                        <span class="btn-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                            </svg>
-                        </span>
-                    </a>
-                </div>
-
-            </div>
-        </section>
-
     </main>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-right">
-                <a href="https://github.com/ombharati" class="body-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="https://linkedin.com/in/om-bharati5/" class="body-sm" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="https://ombharati.github.io/" class="body-sm" target="_blank" rel="noopener noreferrer">Website</a>
-                <a href="mailto:i.ombharati@gmail.com" class="body-sm">Email</a>
-            </div>
-        </div>
-    </footer>
-
 </body>
-
 </html>
-
