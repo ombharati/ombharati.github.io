@@ -61,7 +61,7 @@
 
     <!-- Main Single Viewport Container -->
     <main class="viewport-page">
-        <div class="viewport-inner">
+        <div class="viewport-inner contact-viewport-inner">
             
             <!-- Page Header -->
             <div class="contact-header fade-in">
@@ -72,11 +72,9 @@
                 <p class="page-subtitle">Have an internship role, an interesting system problem, or feedback on a project? Drop me a line.</p>
             </div>
 
-            <!-- Two Column Contact Grid (Fits Single Viewport) -->
-            <div class="contact-grid fade-in">
-                
-                <!-- Left Column: Contact Methods & CV -->
-                <div class="contact-card">
+            <!-- Single Wide Centered Contact Card -->
+            <div class="contact-wide-wrapper fade-in">
+                <div class="contact-card contact-card-wide">
                     <div class="contact-card-top">
                         <div class="section-label" style="margin-bottom: 12px;">Contact Channels</div>
                         <div class="contact-info-list">
@@ -123,49 +121,19 @@
                         </div>
                     </div>
 
-                    <div style="padding-top: 14px;">
+                    <div class="contact-card-footer">
                         <a href="assets/resume.pdf" class="btn btn-secondary btn-sm" download="Om_Bharati_Resume.pdf">
                             <span class="btn-icon" aria-hidden="true">
                                 <svg width="15" height="15" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
                             </span>
                             <span>Download Full Resume</span>
                         </a>
+                        <div class="pill-badge">
+                            <span class="status-dot" aria-hidden="true"></span>
+                            <span>Direct response within 24 hours</span>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Right Column: Minimal Async Form -->
-                <div class="contact-card">
-                    <div class="contact-card-top">
-                        <div class="section-label" style="margin-bottom: 12px;">Send a Direct Message</div>
-                        <form id="contact-form" novalidate>
-                            <div class="form-group">
-                                <label for="sender-name" class="form-label">Your Name</label>
-                                <input type="text" id="sender-name" name="name" class="form-input" placeholder="e.g. Jane Doe" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="sender-email" class="form-label">Your Email</label>
-                                <input type="email" id="sender-email" name="email" class="form-input" placeholder="e.g. jane@example.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="sender-message" class="form-label">Message</label>
-                                <textarea id="sender-message" name="message" class="form-textarea" placeholder="Drop a note about an opportunity, project feedback, or just say hi..." required></textarea>
-                            </div>
-                            
-                            <div id="form-status" class="form-status" style="display: none;" role="status"></div>
-
-                            <button type="submit" class="btn btn-primary btn-sm" style="width: 100%;">
-                                <span>Send Message</span>
-                                <span class="btn-icon" aria-hidden="true">
-                                    <svg width="15" height="15" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                                </span>
-                            </button>
-                            <p class="form-note">
-                                Direct dispatch. Messages are delivered straight to my primary inbox.
-                            </p>
-                        </form>
-                    </div>
-                </div>
-
             </div>
         </div>
     </main>

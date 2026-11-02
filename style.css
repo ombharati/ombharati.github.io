@@ -969,6 +969,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     text-align: left;
 }
 
+.contact-viewport-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.contact-wide-wrapper {
+    width: 100%;
+}
+
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -987,6 +997,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     justify-content: space-between;
     height: 100%;
     transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.contact-card-wide {
+    width: 100%;
+    padding: var(--space-8);
+}
+
+.contact-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--border-subtle);
+    margin-top: var(--space-2);
+    flex-wrap: wrap;
 }
 
 .contact-card:hover {
@@ -1335,6 +1361,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         flex-direction: column;
         align-items: flex-start;
         gap: var(--space-2);
+    }
+
+    .contact-card-wide {
+        padding: var(--space-5);
+    }
+
+    .contact-card-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-3);
+    }
+
+    .contact-card-footer .pill-badge {
+        justify-content: center;
     }
 
     .project-actions-bar {
