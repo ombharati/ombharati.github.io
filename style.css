@@ -88,7 +88,7 @@ body {
 
 /* Background image for home page only */
 body.home-page {
-    background-image: url('cat.jpeg');
+    background-image: url('assets/cat.jpeg');
     background-size: cover;
     background-position: right center;
     background-attachment: fixed;
