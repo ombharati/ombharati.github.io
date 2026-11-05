@@ -3,6 +3,15 @@
 screenshots/
 verify_ui.js
 scripts/
+test_*.js
+test_*.json
+verify_*.js
+*.log
+
+# Agent files and task artifacts
+.agents/
+PROJECT.md
+TEST_INFRA.md
 
 # Dependencies and caches
 node_modules/

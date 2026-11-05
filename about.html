@@ -6,15 +6,15 @@
     <title>About - Om Bharati</title>
     <meta name="description" content="Learn more about Om Bharati, education, technical skills, and systems engineering background.">
     
-    <!-- Google Fonts: Inter & Playfair Display -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+    <!-- Font Preloads: Geist Typography Stack (Local Self-Hosted Variable WOFF2) -->
+    <link rel="preload" href="assets/fonts/geist-sans/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/geist-serif/GeistSerifVF.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/geist-mono/GeistMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/ %3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='18' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3EO%3C/text%3E%3C/svg%3E">
     
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
     <style>
         body { background-color: #fafafa; color: #0a0a0a; margin: 0; }
         svg { max-width: 100%; display: inline-block; vertical-align: middle; }
@@ -27,28 +27,28 @@
     <!-- Floating Pill Navigation -->
     <header class="site-nav-wrapper">
         <nav class="site-nav" aria-label="Main Navigation">
-            <a href="index.html" class="nav-link">
+            <a href="index.html" class="nav-link" aria-label="Home">
                 <span class="nav-icon" aria-hidden="true">
                     <!-- Home icon -->
                     <svg width="15" height="15" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                 </span>
                 <span class="nav-label">Home</span>
             </a>
-            <a href="about.html" class="nav-link active" aria-current="page">
+            <a href="about.html" class="nav-link active" aria-current="page" aria-label="About">
                 <span class="nav-icon" aria-hidden="true">
                     <!-- ID Card icon -->
                     <svg width="15" height="15" viewBox="0 0 24 24"><rect width="18" height="14" x="3" y="5" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M15 9h2"/><path d="M15 13h2"/><path d="M6 16c0-1.5 1.5-2 3-2s3 .5 3 2"/></svg>
                 </span>
                 <span class="nav-label">About</span>
             </a>
-            <a href="projects.html" class="nav-link">
+            <a href="projects.html" class="nav-link" aria-label="Projects">
                 <span class="nav-icon" aria-hidden="true">
                     <!-- Folder Open icon -->
                     <svg width="15" height="15" viewBox="0 0 24 24"><path d="m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2"/></svg>
                 </span>
                 <span class="nav-label">Projects</span>
             </a>
-            <a href="contact.html" class="nav-link">
+            <a href="contact.html" class="nav-link" aria-label="Contact">
                 <span class="nav-icon" aria-hidden="true">
                     <!-- Mail icon -->
                     <svg width="15" height="15" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -58,8 +58,8 @@
         </nav>
     </header>
 
-    <!-- Main Single Viewport Container -->
-    <main class="viewport-page">
+    <!-- Main Page Container -->
+    <main class="viewport-page about-viewport-page">
         <div class="viewport-inner">
             
             <!-- Page Header -->
@@ -150,6 +150,55 @@
                 </div>
 
             </div>
+
+            <!-- Section: Things I'm Exploring -->
+            <section class="exploring-section fade-in" aria-labelledby="exploring-heading">
+                <div class="exploring-header">
+                    <div class="pill-badge">
+                        <span>Current Focus</span>
+                    </div>
+                    <h2 id="exploring-heading" class="exploring-title">Things I'm Exploring</h2>
+                    <p class="exploring-subtitle">Areas of active learning, experimentation, and self-directed deep dives.</p>
+                </div>
+
+                <div class="exploring-grid">
+                    <!-- Card 1: Backend & Systems -->
+                    <div class="exploring-card">
+                        <div class="exploring-card-title">BACKEND &amp; SYSTEMS</div>
+                        <div class="exploring-tags">
+                            <span class="pill-tag">Backend Architecture</span>
+                            <span class="pill-tag">Databases</span>
+                            <span class="pill-tag">Distributed Systems</span>
+                            <span class="pill-tag">Networking</span>
+                            <span class="pill-tag">Memory &amp; Resource Management</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Infrastructure & Linux -->
+                    <div class="exploring-card">
+                        <div class="exploring-card-title">INFRASTRUCTURE &amp; LINUX</div>
+                        <div class="exploring-tags">
+                            <span class="pill-tag">Linux Environments</span>
+                            <span class="pill-tag">Immutable OS</span>
+                            <span class="pill-tag">Containers &amp; OCI</span>
+                            <span class="pill-tag">DevOps Workflows</span>
+                            <span class="pill-tag">Deployment Architecture</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: GPU & Local Computing -->
+                    <div class="exploring-card">
+                        <div class="exploring-card-title">GPU &amp; LOCAL COMPUTING</div>
+                        <div class="exploring-tags">
+                            <span class="pill-tag">CUDA</span>
+                            <span class="pill-tag">GPU-Accelerated Computing</span>
+                            <span class="pill-tag">Local AI Inference</span>
+                            <span class="pill-tag">Hardware Resource Utilization</span>
+                            <span class="pill-tag">Model Integration</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 
